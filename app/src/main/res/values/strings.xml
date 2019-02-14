@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">CaloCare</string>
+    <string name="app_name">Basic Info</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_Age">Age</string>
+    <string name="rdbtn_male">Male</string>
+    <string name="rdbtn_female">Female</string>
+    <string name="rdbtn_other">Other</string>
+    <string name="btn_next">Next</string>
 </resources>
