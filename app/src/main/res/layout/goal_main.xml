@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@android:drawable/alert_light_frame"
+    tools:context=".Goal">
 
     <RadioGroup
         android:id="@+id/radioGroup"
