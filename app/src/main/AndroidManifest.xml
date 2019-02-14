@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Goal"></activity>
+        <activity android:name=".ActiveLevel"></activity>
         <activity android:name=".BasicInfo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
