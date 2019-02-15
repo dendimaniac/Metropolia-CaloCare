@@ -1,8 +1,12 @@
 package com.example.calocare;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Food {
     private String name;
     private int calories, carbs, protein, fat, fiber, cholesterol, calcium;
+    private ArrayList<Integer> foodInfo;
 
     public Food(String name, int calories, int carbs, int protein, int fat, int fiber, int cholesterol, int calcium) {
         this.name = name;
@@ -41,5 +45,10 @@ public class Food {
 
     public int getCalcium() {
         return calcium;
+    }
+
+    public ArrayList<Integer> getFoodInfo() {
+        foodInfo.addAll(Arrays.asList(calories, carbs, protein, fat, fiber, cholesterol, calcium));
+        return foodInfo;
     }
 }
