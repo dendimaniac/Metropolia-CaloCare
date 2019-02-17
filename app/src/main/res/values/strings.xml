@@ -8,4 +8,6 @@
     <string name="txt_gender">Gender</string>
     <string name="txt_birthdate">Birthdate</string>
     <string name="txt_info">Basic Info</string>
+    <string name="txt_height">Height</string>
+    <string name="txt_weight">Weight</string>
 </resources>

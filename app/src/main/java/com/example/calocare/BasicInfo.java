@@ -20,6 +20,7 @@ public class BasicInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_info);
+        this.setTitle("You");
 
         nameTxt = findViewById(R.id.name);
         ageTxt = findViewById(R.id.age);
