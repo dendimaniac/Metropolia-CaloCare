@@ -9,15 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BMRInFo"></activity>
-        <activity android:name=".Goal" />
-        <activity android:name=".ActiveLevel" />
         <activity android:name=".BasicInfo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".BMRInFo"
+                android:parentActivityName=".BasicInfo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BasicInfo" />
+        </activity>
+        <activity android:name=".Goal"
+                android:parentActivityName=".BMRInFo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BMRInFo" />
+        </activity>
+        <activity android:name=".ActiveLevel"
+                android:parentActivityName=".Goal">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Goal" />
         </activity>
     </application>
 

@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">You</string>
+    <string name="app_name">CaloCare</string>
+    <string name="basic_info_title">You</string>
+    <string name="bmr_info_title">Physical Info</string>
+    <string name="goal_title">Goal</string>
+    <string name="active_level_title">Active Level</string>
     <string name="txt_name">Name</string>
     <string name="rdbtn_male">Male</string>
     <string name="rdbtn_female">Female</string>
