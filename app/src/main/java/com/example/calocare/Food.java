@@ -51,4 +51,9 @@ public class Food {
         foodInfo.addAll(Arrays.asList(calories, carbs, protein, fat, fiber, cholesterol, calcium));
         return foodInfo;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
