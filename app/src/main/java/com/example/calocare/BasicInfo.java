@@ -1,10 +1,12 @@
 package com.example.calocare;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -20,7 +22,7 @@ public class BasicInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.basic_info);
-        this.setTitle("You");
+        this.setTitle(R.string.basic_info_title);
 
         nameTxt = findViewById(R.id.name);
         ageTxt = findViewById(R.id.age);
@@ -62,5 +64,10 @@ public class BasicInfo extends AppCompatActivity {
         } else {
             nextBtn.setEnabled(true);
         }
+    }
+
+    public void nextActivity(View v) {
+        Intent nextActivity = new Intent(this, BMRInFo.class);
+        startActivity(nextActivity);
     }
 }
