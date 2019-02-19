@@ -20,6 +20,20 @@ public class FoodList {
         foodList.add(new Food("Salmon",200,20,20,20,20,20,20));
         foodList.add(new Food("Tuna",200,20,20,20,20,20,20));
         foodList.add(new Food("Rice",200,20,20,20,20,20,20));
+        foodList.add(new Food("Beef",200,20,20,20,20,20,20));
+        foodList.add(new Food("Pork",200,20,20,20,20,20,20));
+        foodList.add(new Food("Chicken",200,20,20,20,20,20,20));
+        foodList.add(new Food("Carrot",200,20,20,20,20,20,20));
+        foodList.add(new Food("Salmon",200,20,20,20,20,20,20));
+        foodList.add(new Food("Tuna",200,20,20,20,20,20,20));
+        foodList.add(new Food("Rice",200,20,20,20,20,20,20));
+        foodList.add(new Food("Beef",200,20,20,20,20,20,20));
+        foodList.add(new Food("Pork",200,20,20,20,20,20,20));
+        foodList.add(new Food("Chicken",200,20,20,20,20,20,20));
+        foodList.add(new Food("Carrot",200,20,20,20,20,20,20));
+        foodList.add(new Food("Salmon",200,20,20,20,20,20,20));
+        foodList.add(new Food("Tuna",200,20,20,20,20,20,20));
+        foodList.add(new Food("Rice",200,20,20,20,20,20,20));
     }
 
     public List<Food> getFoodList() {
