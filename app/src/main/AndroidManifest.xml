@@ -34,6 +34,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Goal" />
         </activity>
+      <activity android:name=".FoodChoice"></activity>
     </application>
-
 </manifest>
