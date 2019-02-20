@@ -5,10 +5,11 @@ import java.util.Arrays;
 
 public class Food {
     private String name;
-    private int calories, carbs, protein, fat, fiber, cholesterol, calcium;
+    private int calories, carbs, protein, fat, fiber, cholesterol, calcium,numOfServ;
+    private String servingSize;
     private ArrayList<Integer> foodInfo;
 
-    public Food(String name, int calories, int carbs, int protein, int fat, int fiber, int cholesterol, int calcium) {
+    public Food(String name, int calories, int carbs, int protein, int fat, int fiber, int cholesterol, int calcium, String servingSize) {
         this.name = name;
         this.calories = calories;
         this.carbs = carbs;
@@ -17,6 +18,7 @@ public class Food {
         this.fiber = fiber;
         this.cholesterol = cholesterol;
         this.calcium = calcium;
+        this.servingSize= servingSize;
     }
 
     public int getCalories() {
@@ -45,6 +47,10 @@ public class Food {
 
     public int getCalcium() {
         return calcium;
+    }
+
+    public int getNumOfServ(){
+        return numOfServ;
     }
 
     public ArrayList<Integer> getFoodInfo() {
