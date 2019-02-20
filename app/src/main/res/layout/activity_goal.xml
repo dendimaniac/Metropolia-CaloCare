@@ -19,7 +19,7 @@
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gain weight"
+            android:text="@string/txt_gain"
             tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="150dp" />
 
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Mantain weight"
+            android:text="@string/txt_maintain"
             app:layout_constraintTop_toBottomOf="@+id/radioButton"
             tools:layout_editor_absoluteX="54dp" />
 
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Lose weight"
+            android:text="@string/txt_lose"
             app:layout_constraintTop_toBottomOf="@+id/radioButton2"
             tools:layout_editor_absoluteX="54dp" />
     </RadioGroup>
@@ -50,7 +50,7 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:onClick="nextActivity"
-        android:text="Next"
+        android:text="@string/btn_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

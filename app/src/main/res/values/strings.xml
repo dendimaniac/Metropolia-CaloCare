@@ -15,4 +15,7 @@
     <string name="txt_height">Height</string>
     <string name="txt_weight">Weight</string>
     <string name="txt_food_choice">What you had?</string>
+    <string name="txt_gain">Gain weight</string>
+    <string name="txt_lose">Lose weight</string>
+    <string name="txt_maintain">Maintain weight</string>
 </resources>
