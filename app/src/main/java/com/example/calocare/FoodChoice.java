@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import NonActivityClasses.Food;
+import NonActivityClasses.FoodList;
+
 public class FoodChoice extends AppCompatActivity {
     private ListView listView;
 

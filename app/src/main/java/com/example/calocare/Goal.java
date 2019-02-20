@@ -15,6 +15,8 @@ public class Goal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
+        this.setTitle(R.string.goal_title);
+
         goal = findViewById(R.id.goal);
         next = findViewById(R.id.next);
 

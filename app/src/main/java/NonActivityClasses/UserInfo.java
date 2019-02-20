@@ -1,4 +1,4 @@
-package com.example.calocare;
+package NonActivityClasses;
 
 public class UserInfo {
     private static final UserInfo userInstance = new UserInfo();

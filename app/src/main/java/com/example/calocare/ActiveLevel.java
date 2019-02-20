@@ -17,6 +17,7 @@ public class ActiveLevel extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_level);
+        this.setTitle(R.string.active_level_title);
 
         button1= findViewById(R.id.button1);
         button2= findViewById(R.id.button2);
