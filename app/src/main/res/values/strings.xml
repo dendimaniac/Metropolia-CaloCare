@@ -19,4 +19,7 @@
     <string name="btn_slightlyActive">Slightly Active</string>
     <string name="btn_active">Active</string>
     <string name="text_view_howActive">How Active Are you?</string>
+    <string name="txt_gain">Gain weight</string>
+    <string name="txt_lose">Lose weight</string>
+    <string name="txt_maintain">Maintain weight</string>
 </resources>
