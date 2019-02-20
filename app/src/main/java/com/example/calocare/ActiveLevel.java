@@ -1,5 +1,6 @@
 package com.example.calocare;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,4 +46,9 @@ public class ActiveLevel extends AppCompatActivity {
             }
         }
     };
+
+    public void nextActivity(View v) {
+        Intent nextActivity = new Intent(this, Goal.class);
+        startActivity(nextActivity);
+    }
 }

@@ -28,10 +28,4 @@ public class Goal extends AppCompatActivity {
             }
         });
     }
-
-
-    public void nextActivity(View v) {
-        Intent nextActivity = new Intent(this, ActiveLevel.class);
-        startActivity(nextActivity);
-    }
 }

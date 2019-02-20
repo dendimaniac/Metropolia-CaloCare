@@ -60,7 +60,7 @@ public class BMRInFo extends AppCompatActivity {
     };
 
     public void nextActivity(View v) {
-        Intent nextActivity = new Intent(this, Goal.class);
+        Intent nextActivity = new Intent(this, ActiveLevel.class);
         startActivity(nextActivity);
     }
 }
