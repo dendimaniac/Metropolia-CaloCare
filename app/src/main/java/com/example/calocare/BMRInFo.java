@@ -1,5 +1,6 @@
 package com.example.calocare;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +20,7 @@ public class BMRInFo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmr_info);
-        this.setTitle("Physical Info");
+        this.setTitle(R.string.bmr_info_title);
 
         heightTxt = findViewById(R.id.txt_height);
         weightTxt = findViewById(R.id.txt_weight);
@@ -57,4 +58,9 @@ public class BMRInFo extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {}
     };
+
+    public void nextActivity(View v) {
+        Intent nextActivity = new Intent(this, Goal.class);
+        startActivity(nextActivity);
+    }
 }
