@@ -23,7 +23,6 @@ public class FoodList {
         foodList.add(new Food("Bread",200,35,4,6,0,0,3,"1 slice"));
         foodList.add(new Food("Eggs",72,1,7,5,0,186,3,"1 large"));
         foodList.add(new Food("Pasta",200,41,7,1,0,0,0,"2 ounces"));
-
     }
 
     public List<Food> getFoodList() {
