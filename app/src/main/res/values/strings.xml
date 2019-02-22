@@ -10,7 +10,7 @@
     <string name="rdbtn_other">Other</string>
     <string name="btn_next">Next</string>
     <string name="txt_gender">Gender</string>
-    <string name="txt_birthdate">Birthdate</string>
+    <string name="txt_age">Age</string>
     <string name="txt_info">Basic Info</string>
     <string name="txt_height">Height</string>
     <string name="txt_weight">Weight</string>
