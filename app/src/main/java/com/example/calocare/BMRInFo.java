@@ -1,6 +1,8 @@
 package com.example.calocare;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,16 +13,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import NonActivityClasses.AppControl;
+import NonActivityClasses.UserInfo;
+
 public class BMRInFo extends AppCompatActivity {
+    private static final String PREF = "data";
+
     private EditText heightTxt;
     private EditText weightTxt;
     private Button nextBtn;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor prefEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmr_info);
         this.setTitle(R.string.bmr_info_title);
+
+        pref = getSharedPreferences(PREF, Activity.MODE_PRIVATE);
+        prefEditor = pref.edit();
 
         heightTxt = findViewById(R.id.txt_height);
         weightTxt = findViewById(R.id.txt_weight);
@@ -31,6 +44,46 @@ public class BMRInFo extends AppCompatActivity {
 
         heightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
         weightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        int height = pref.getInt("userHeight", 0);
+        int weight = pref.getInt("userWeight", 0);
+
+        if (height <= 0) {
+            heightTxt.setText("");
+        } else {
+            heightTxt.setText("" + height);
+        }
+
+        if (weight <= 0) {
+            weightTxt.setText("");
+        } else {
+            weightTxt.setText("" + weight);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        int defaultH = 0, defaultW = 0;
+
+        if (!TextUtils.isEmpty(AppControl.getText(heightTxt))) {
+            defaultH = Integer.parseInt(AppControl.getText(heightTxt));
+            UserInfo.getInstance().setHeight(defaultH);
+        }
+        if (!TextUtils.isEmpty(AppControl.getText(weightTxt))) {
+            defaultW = Integer.parseInt(AppControl.getText(weightTxt));
+            UserInfo.getInstance().setWeight(defaultW);
+        }
+
+        prefEditor.putInt("userHeight", defaultH);
+        prefEditor.putInt("userWeight", defaultW);
+        prefEditor.commit();
     }
 
     private class NumericKeyBoardTransformationMethod extends PasswordTransformationMethod {
