@@ -3,6 +3,7 @@ package com.example.calocare;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import NonActivityClasses.AppControl;
 import NonActivityClasses.UserInfo;
 
 public class BasicInfo extends AppCompatActivity {
@@ -35,7 +37,7 @@ public class BasicInfo extends AppCompatActivity {
         setContentView(R.layout.basic_info);
         this.setTitle(R.string.basic_info_title);
 
-        pref = getSharedPreferences(PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         nameTxt = findViewById(R.id.name);
@@ -63,7 +65,7 @@ public class BasicInfo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int age = pref.getInt("userAge", -1);
+        int age = pref.getInt("userAge", 0);
         int checkId = pref.getInt("userGender", -1);
 
         nameTxt.setText(pref.getString("userName", ""));
@@ -88,18 +90,18 @@ public class BasicInfo extends AppCompatActivity {
         int selectedId = gender.getCheckedRadioButtonId();
         int defaultAge = 0;
 
-        if (!TextUtils.isEmpty(getText(nameTxt))) {
-            UserInfo.getInstance().setName(getText(nameTxt));
+        if (!TextUtils.isEmpty(AppControl.getText(nameTxt))) {
+            UserInfo.getInstance().setName(AppControl.getText(nameTxt));
         }
-        if (!TextUtils.isEmpty(getText(ageTxt))) {
-            defaultAge = Integer.parseInt(getText(ageTxt));
+        if (!TextUtils.isEmpty(AppControl.getText(ageTxt))) {
+            defaultAge = Integer.parseInt(AppControl.getText(ageTxt));
             UserInfo.getInstance().setAge(defaultAge);
         }
         if (selectedId != -1) {
             RadioButton selectedGender = findViewById(selectedId);
             UserInfo.getInstance().setGender(selectedGender.getText().toString());
         }
-        prefEditor.putString("userName", getText(nameTxt));
+        prefEditor.putString("userName", AppControl.getText(nameTxt));
         prefEditor.putInt("userAge", defaultAge);
         prefEditor.putInt("userGender", selectedId);
         prefEditor.commit();
@@ -135,13 +137,9 @@ public class BasicInfo extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
-    private String getText(EditText input) {
-        return input.getText().toString().trim();
-    }
-
     private boolean hasFilled() {
-        if (TextUtils.isEmpty(getText(nameTxt))
-                || TextUtils.isEmpty(getText(ageTxt))
+        if (TextUtils.isEmpty(AppControl.getText(nameTxt))
+                || TextUtils.isEmpty(AppControl.getText(ageTxt))
                 || onChecked == false) {
             return false;
         } else {

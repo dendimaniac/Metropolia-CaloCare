@@ -22,4 +22,8 @@
     <string name="txt_gain">Gain weight</string>
     <string name="txt_lose">Lose weight</string>
     <string name="txt_maintain">Maintain weight</string>
+    <string name="txt_height_cm">Fill in cm</string>
+    <string name="txt_height_ft">Fill in ft</string>
+    <string name="txt_weight_kg">Fill in kg</string>
+    <string name="txt_weight_lb">Fill in lb</string>
 </resources>
