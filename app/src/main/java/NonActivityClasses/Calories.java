@@ -1,4 +1,4 @@
-package com.example.calocare;
+package NonActivityClasses;
 
 public class Calories {
     private int a= UserInfo.getInstance().getGoalStatus();

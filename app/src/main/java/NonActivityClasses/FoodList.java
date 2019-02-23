@@ -1,4 +1,4 @@
-package com.example.calocare;
+package NonActivityClasses;
 
 import java.util.ArrayList;
 import java.util.List;

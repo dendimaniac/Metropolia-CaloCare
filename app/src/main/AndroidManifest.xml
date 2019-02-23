@@ -22,17 +22,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BasicInfo" />
         </activity>
-        <activity android:name=".Goal"
+        <activity android:name=".ActiveLevel"
                 android:parentActivityName=".BMRInFo">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BMRInFo" />
         </activity>
-        <activity android:name=".ActiveLevel"
-                android:parentActivityName=".Goal">
+        <activity android:name=".Goal"
+                android:parentActivityName=".ActiveLevel">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Goal" />
+                android:value=".ActiveLevel" />
         </activity>
       <activity android:name=".FoodChoice"></activity>
     </application>

@@ -18,6 +18,7 @@ public class ActiveLevel extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_level);
+        this.setTitle(R.string.active_level_title);
 
         r_button1= findViewById(R.id.notactive);
         r_button2= findViewById(R.id.slightlyactive);
@@ -35,6 +36,7 @@ public class ActiveLevel extends AppCompatActivity {
             button4.setEnabled(true);
         }
     };
+
     public void nextActivity(View v) {
         Intent nextActivity = new Intent(this, Goal.class);
         startActivity(nextActivity);

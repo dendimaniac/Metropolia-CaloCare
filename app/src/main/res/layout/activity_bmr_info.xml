@@ -27,7 +27,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="@string/txt_height"
+        android:hint="@string/txt_height_cm"
         android:inputType="numberPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_height" />
@@ -53,7 +53,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="@string/txt_weight"
+        android:hint="@string/txt_weight_kg"
         android:inputType="numberPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_weight" />

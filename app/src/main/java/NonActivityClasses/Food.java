@@ -1,11 +1,11 @@
-package com.example.calocare;
+package NonActivityClasses;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Food {
     private String name;
-    private int calories, carbs, protein, fat, fiber, cholesterol, calcium,numOfServ;
+    private int calories, carbs, protein, fat, fiber, cholesterol, calcium, numOfServ;
     private String servingSize;
     private ArrayList<Integer> foodInfo;
 
@@ -52,6 +52,8 @@ public class Food {
     public int getNumOfServ(){
         return numOfServ;
     }
+
+    public void setNumOfServ(int amount) { numOfServ = amount; }
 
     public ArrayList<Integer> getFoodInfo() {
         foodInfo.addAll(Arrays.asList(calories, carbs, protein, fat, fiber, cholesterol, calcium));
