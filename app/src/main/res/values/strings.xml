@@ -22,4 +22,11 @@
     <string name="txt_gain">Gain weight</string>
     <string name="txt_lose">Lose weight</string>
     <string name="txt_maintain">Maintain weight</string>
+    <string name="txt_CalorRemain">Calories Remaining</string>
+    <string name="txt_food">Food</string>
+    <string name="txt_Calor">Calories</string>
+    <string name="txt_Remaing">Remaining</string>
+    <string name="txt_minus">-</string>
+    <string name="txt_equal">=</string>
+    <string name="txt_goal">Goal</string>
 </resources>

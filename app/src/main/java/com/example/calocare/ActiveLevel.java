@@ -31,7 +31,9 @@ public class ActiveLevel extends AppCompatActivity {
 
     CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
-        public void onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
+        public void
+
+        onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
             button4.setEnabled(true);
         }
     };
