@@ -47,11 +47,8 @@ public class Goal extends AppCompatActivity {
     CompoundButton.OnCheckedChangeListener nListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (isChecked){
                 button4.setEnabled(true);
-            }else {
-                button4.setEnabled(false);
-            }
+
         }
     };
 
