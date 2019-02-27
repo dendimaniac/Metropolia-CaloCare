@@ -35,9 +35,13 @@ public class SpinnerActivity extends AppCompatActivity {
         // Optional: Sau khi click xong thi lam gi tiep theo?  SaveReferrence or whatever
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {}
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //Code is here;
+            }
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {}
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //Code is here
+            }
         });*/
     }
 }

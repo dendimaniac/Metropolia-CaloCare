@@ -42,14 +42,15 @@ public class ActiveLevel extends AppCompatActivity {
         prefEditor = pref.edit();
         level = findViewById(R.id.level);
 
-
     }
-
-
     CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            button4.setEnabled(true);
+            if (isChecked){
+                button4.setEnabled(true);
+            }else {
+                button4.setEnabled(false);
+            }
         }
     };
 
@@ -62,7 +63,7 @@ public class ActiveLevel extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int checkId = pref.getInt("userGoal", -1);
+        int checkId = pref.getInt("userActiveNha", -1);
 
         if (checkId == -1) {
             level.clearCheck();
@@ -95,7 +96,7 @@ public class ActiveLevel extends AppCompatActivity {
             UserInfo.getInstance().setActiveStatus(a);
         }
 
-        prefEditor.putInt("userGoal", selectedId);
+        prefEditor.putInt("userActive", selectedId);
         prefEditor.commit();
     }
 }

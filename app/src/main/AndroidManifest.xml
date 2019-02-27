@@ -9,8 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpinnerActivity"></activity>
-        <activity android:name=".GiaoDienChinh" />
         <activity android:name=".BasicInfo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,6 +36,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ActiveLevel" />
+        </activity>
+        <activity android:name=".SpinnerActivity"
+            android:parentActivityName=".Goal">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Goal" />
         </activity>
         <activity android:name=".FoodChoice" />
     </application>

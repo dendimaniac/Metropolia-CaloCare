@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -15,35 +16,55 @@ import NonActivityClasses.AppControl;
 import NonActivityClasses.UserInfo;
 
 public class Goal extends AppCompatActivity {
-    private Button next;
+    private RadioButton r_1;
+    private RadioButton r_2;
+    private RadioButton r_3;
+    private Button button4;
     private RadioGroup goal;
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
-        this.setTitle(R.string.goal_title);
+
+        r_1 = findViewById(R.id.radioButton);
+        r_2 = findViewById(R.id.radioButton2);
+        r_3 = findViewById(R.id.radioButton3);
+        button4 = findViewById(R.id.next);
+
+        r_1.setOnCheckedChangeListener(nListener);
+        r_2.setOnCheckedChangeListener(nListener);
+        r_3.setOnCheckedChangeListener(nListener);
 
         pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
-
         goal = findViewById(R.id.goal);
-        next = findViewById(R.id.next);
 
-        next.setEnabled(false);
-        goal.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                next.setEnabled(true);
-            }
-        });
     }
+    CompoundButton.OnCheckedChangeListener nListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (isChecked){
+                button4.setEnabled(true);
+            }else {
+                button4.setEnabled(false);
+            }
+        }
+    };
+
+
+    public void nextActivity(View v) {
+        Intent nextActivity = new Intent(this, SpinnerActivity.class);
+        startActivity(nextActivity);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        int checkId = pref.getInt("userGoal", -1);
+        int checkId = pref.getInt("userGoalNha", -1);
 
         if (checkId == -1) {
             goal.clearCheck();
@@ -60,18 +81,18 @@ public class Goal extends AppCompatActivity {
 
 
         if (selectedId != -1) {
-            RadioButton selectedGoal = findViewById(selectedId);
 
 
-            if(selectedGoal.getText().toString().equals("Gain weight")){
-                a =1;
+            if (selectedId == R.id.radioButton) {
+                a = 1;
             }
-            if (selectedGoal.getText().toString().equals("Maintain weight")){
-                a =2;
+            if (selectedId == R.id.radioButton2) {
+                a = 2;
             }
-            if (selectedGoal.getText().toString().equals("Lose weight")){
-                a =3;
+            if (selectedId == R.id.radioButton3) {
+                a = 3;
             }
+
 
             UserInfo.getInstance().setGoalStatus(a);
         }
