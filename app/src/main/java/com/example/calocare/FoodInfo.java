@@ -9,5 +9,6 @@ public class FoodInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_info);
+        this.setTitle(R.string.food_info_title);
     }
 }
