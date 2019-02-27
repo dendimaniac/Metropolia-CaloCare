@@ -30,7 +30,6 @@ public class FoodInfo extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
 
-
         /*
         // Optional: Sau khi click xong thi lam gi tiep theo?  SaveReferrence or whatever
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
