@@ -16,9 +16,9 @@ import NonActivityClasses.AppControl;
 import NonActivityClasses.UserInfo;
 
 public class Goal extends AppCompatActivity {
-    private RadioButton r_1;
-    private RadioButton r_2;
-    private RadioButton r_3;
+    private RadioButton rb1;
+    private RadioButton rb2;
+    private RadioButton rb3;
     private Button button4;
     private RadioGroup goal;
     private SharedPreferences pref;
@@ -30,14 +30,14 @@ public class Goal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
 
-        r_1 = findViewById(R.id.radioButton);
-        r_2 = findViewById(R.id.radioButton2);
-        r_3 = findViewById(R.id.radioButton3);
+        rb1 = findViewById(R.id.radioButton);
+        rb2 = findViewById(R.id.radioButton2);
+        rb3 = findViewById(R.id.radioButton3);
         button4 = findViewById(R.id.next);
 
-        r_1.setOnCheckedChangeListener(nListener);
-        r_2.setOnCheckedChangeListener(nListener);
-        r_3.setOnCheckedChangeListener(nListener);
+        rb1.setOnCheckedChangeListener(nListener);
+        rb2.setOnCheckedChangeListener(nListener);
+        rb3.setOnCheckedChangeListener(nListener);
 
         pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
@@ -61,7 +61,7 @@ public class Goal extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int checkId = pref.getInt("userGoalNha", -1);
+        int checkId = pref.getInt("userGoal", -1);
 
         if (checkId == -1) {
             goal.clearCheck();
