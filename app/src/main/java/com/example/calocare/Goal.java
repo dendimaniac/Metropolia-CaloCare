@@ -1,5 +1,6 @@
 package com.example.calocare;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,9 @@ public class Goal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
         this.setTitle(R.string.goal_title);
+
+        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        prefEditor = pref.edit();
 
         goal = findViewById(R.id.goal);
         next = findViewById(R.id.next);

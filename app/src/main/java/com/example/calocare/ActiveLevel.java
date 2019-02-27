@@ -14,10 +14,8 @@ public class ActiveLevel extends AppCompatActivity {
     private RadioButton r_button1;
     private RadioButton r_button2;
     private RadioButton r_button3;
-    private RadioGroup active;
     Button button4;
-    private SharedPreferences pref;
-    private SharedPreferences.Editor prefEditor;
+
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -34,17 +32,7 @@ public class ActiveLevel extends AppCompatActivity {
         r_button3.setOnCheckedChangeListener(mListener);
 
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        int checkId = pref.getInt("user", -1);
 
-        if (checkId == -1) {
-            active.clearCheck();
-        } else {
-            active.check(checkId);
-        }
-    }
 
     CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
