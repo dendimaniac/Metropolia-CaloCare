@@ -1,6 +1,7 @@
 package com.example.calocare;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,9 +32,7 @@ public class ActiveLevel extends AppCompatActivity {
 
     CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
-        public void
-
-        onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
+        public void onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
             button4.setEnabled(true);
         }
     };
