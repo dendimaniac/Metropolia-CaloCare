@@ -28,8 +28,9 @@ public class UserInfo {
     public void setActiveStatus(int newActiveStatus){
         activeStatus = newActiveStatus;
     }
-    public void setGoalStatus(int newGoalStatus){
-        goalStatus = newGoalStatus;
+    public void setGoalStatus( int newGoalStatus){
+        goalStatus = (newGoalStatus);
+
     }
 
     public String getName(){
@@ -51,7 +52,7 @@ public class UserInfo {
         return activeStatus;
     }
     public int getGoalStatus(){
-        return goalStatus;
+        return (goalStatus);
     }
 
     public double getBMR(){

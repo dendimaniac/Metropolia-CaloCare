@@ -40,4 +40,5 @@
         <activity android:name=".FoodChoice" />
         <activity android:name=".FoodInfo"></activity>
     </application>
+
 </manifest>

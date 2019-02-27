@@ -15,9 +15,9 @@
     <string name="txt_height">Height</string>
     <string name="txt_weight">Weight</string>
     <string name="txt_food_choice">What you had?</string>
-    <string name="btn_notActive">Not Active</string>
-    <string name="btn_slightlyActive">Slightly Active</string>
-    <string name="btn_active">Active</string>
+    <string name="rDbtn_notActive">Not Active</string>
+    <string name="rDbtn_slightlyActive">Slightly Active</string>
+    <string name="rDbtn_active">Active</string>
     <string name="text_view_howActive">How Active Are you?</string>
     <string name="txt_gain">Gain weight</string>
     <string name="txt_lose">Lose weight</string>
@@ -36,4 +36,10 @@
     <string name="txt_numOfServ">Number of servings</string>
     <string name="txt_add">Add</string>
     <string name="food_info_title">Food Info</string>
+    <string name="txt_caloRemian">Caloiries Remaining</string>
+    <string name="txt_minus">-</string>
+    <string name="txt_equal">=</string>
+    <string name="txt_goal">Goal</string>
+    <string name="txt_Food_main">Food</string>
+    <string name="txt_remaing">Remaining</string>
 </resources>

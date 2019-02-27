@@ -103,7 +103,6 @@ public class BasicInfo extends AppCompatActivity {
         }
         prefEditor.putString("userName", AppControl.getText(nameTxt));
         prefEditor.putInt("userAge", defaultAge);
-        prefEditor.putInt("userGender", selectedId);
         prefEditor.commit();
     }
 
@@ -146,4 +145,6 @@ public class BasicInfo extends AppCompatActivity {
             return true;
         }
     }
+
+
 }
