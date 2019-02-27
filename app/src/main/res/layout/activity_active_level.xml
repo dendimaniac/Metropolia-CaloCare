@@ -5,67 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActiveLevel">
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="390dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/bg"
-        android:text="@string/btn_notActive"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="390dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/bg"
-        android:text="@string/btn_slightlyActive"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
-
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="390dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/bg"
-        android:text="@string/btn_active"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
-        android:layout_marginTop="70dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
         android:baselineAligned="false"
         android:enabled="false"
-        android:text="@string/btn_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/text_view_howActive"
+        android:layout_marginTop="225dp"
+        android:text="How Active Are You?"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/notactive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#3f7628"
+            android:gravity="center"
+            android:text="@string/rDbtn_notActive"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="245dp" />
+
+        <RadioButton
+            android:id="@+id/slightlyactive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#3f7628"
+            android:gravity="center"
+            android:text="@string/rDbtn_slightlyActive"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="428dp" />
+
+        <RadioButton
+            android:id="@+id/active"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="#3f7628"
+            android:gravity="center"
+            android:text="@string/rDbtn_active"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="333dp" />
+    </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>

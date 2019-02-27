@@ -6,50 +6,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 
 public class ActiveLevel extends AppCompatActivity {
-    Button button1;
-    Button button2;
-    Button button3;
+    RadioButton r_button1;
+    RadioButton r_button2;
+    RadioButton r_button3;
     Button button4;
-    boolean onClick= false;
-
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_level);
-        this.setTitle(R.string.active_level_title);
 
-        button1= findViewById(R.id.button1);
-        button2= findViewById(R.id.button2);
-        button3= findViewById(R.id.button3);
+        r_button1= findViewById(R.id.notactive);
+        r_button2= findViewById(R.id.slightlyactive);
+        r_button3= findViewById(R.id.active);
         button4= findViewById(R.id.button4);
 
-
-        button1.setOnClickListener(mListener);
-        button2.setOnClickListener(mListener);
-        button3.setOnClickListener(mListener);
-        button4.setOnClickListener(mListener);
-
+        r_button1.setOnCheckedChangeListener(mListener);
+        r_button2.setOnCheckedChangeListener(mListener);
+        r_button3.setOnCheckedChangeListener(mListener);
     }
 
-
-    View.OnClickListener mListener = new View.OnClickListener() {
+    CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
-        public void onClick( View view ) {
-            int id = view.getId();
-            if( id == R.id.button1 || id == R.id.button2 ||id == R.id.button3){
-                if(!onClick) {
-                    onClick=true;
-                    boolean e = button4.isEnabled();
-                    button4.setEnabled(!e);
-                }
-            }
+        public void onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
+            button4.setEnabled(true);
         }
     };
-
-    public void nextActivity(View v) {
+    public void nextActivity( View v) {
         Intent nextActivity = new Intent(this, Goal.class);
         startActivity(nextActivity);
     }
