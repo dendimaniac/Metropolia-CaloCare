@@ -16,24 +16,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BMRInFo"
-                android:parentActivityName=".BasicInfo">
+        <activity
+            android:name=".BMRInFo"
+            android:parentActivityName=".BasicInfo">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BasicInfo" />
         </activity>
-        <activity android:name=".ActiveLevel"
-                android:parentActivityName=".BMRInFo">
+        <activity
+            android:name=".ActiveLevel"
+            android:parentActivityName=".BMRInFo">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BMRInFo" />
         </activity>
-        <activity android:name=".Goal"
-                android:parentActivityName=".ActiveLevel">
+        <activity
+            android:name=".Goal"
+            android:parentActivityName=".ActiveLevel">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ActiveLevel" />
         </activity>
-      <activity android:name=".FoodChoice"></activity>
+        <activity android:name=".FoodChoice" />
+        <activity android:name=".FoodInfo"></activity>
     </application>
 </manifest>

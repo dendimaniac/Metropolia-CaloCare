@@ -13,7 +13,6 @@ public class ActiveLevel extends AppCompatActivity {
     Button button4;
     boolean onClick= false;
 
-
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
@@ -30,7 +29,6 @@ public class ActiveLevel extends AppCompatActivity {
         button2.setOnClickListener(mListener);
         button3.setOnClickListener(mListener);
         button4.setOnClickListener(mListener);
-
     }
 
     View.OnClickListener mListener = new View.OnClickListener() {
