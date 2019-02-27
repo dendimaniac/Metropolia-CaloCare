@@ -23,7 +23,6 @@ public class ActiveLevel extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +40,8 @@ public class ActiveLevel extends AppCompatActivity {
         pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
         level = findViewById(R.id.level);
-
     }
+  
     CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -59,7 +58,7 @@ public class ActiveLevel extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int checkId = pref.getInt("userActiveNha", -1);
+        int checkId = pref.getInt("userActive", -1);
 
         if (checkId == -1) {
             level.clearCheck();
@@ -91,7 +90,6 @@ public class ActiveLevel extends AppCompatActivity {
 
             UserInfo.getInstance().setActiveStatus(a);
         }
-
         prefEditor.putInt("userActive", selectedId);
         prefEditor.commit();
     }

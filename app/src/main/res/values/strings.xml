@@ -26,6 +26,16 @@
     <string name="txt_height_ft">Fill in ft</string>
     <string name="txt_weight_kg">Fill in kg</string>
     <string name="txt_weight_lb">Fill in lb</string>
+    <string name="txt_calories">Calories</string>
+    <string name="txt_carbs">Carbs</string>
+    <string name="txt_protein">Protein</string>
+    <string name="txt_fat">Fat</string>
+    <string name="txt_fiber">Fiber</string>
+    <string name="txt_cholesterol">Cholesterol</string>
+    <string name="txt_calcium">Calcium</string>
+    <string name="txt_numOfServ">Number of servings</string>
+    <string name="txt_add">Add</string>
+    <string name="food_info_title">Food Info</string>
     <string name="txt_caloRemian">Caloiries Remaining</string>
     <string name="txt_minus">-</string>
     <string name="txt_equal">=</string>

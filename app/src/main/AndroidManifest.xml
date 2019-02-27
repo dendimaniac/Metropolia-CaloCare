@@ -37,13 +37,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ActiveLevel" />
         </activity>
-        <activity android:name=".SpinnerActivity"
-            android:parentActivityName=".Goal">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Goal" />
-        </activity>
         <activity android:name=".FoodChoice" />
+        <activity android:name=".FoodInfo"></activity>
     </application>
 
 </manifest>
