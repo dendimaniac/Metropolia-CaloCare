@@ -52,11 +52,24 @@ public class Goal extends AppCompatActivity {
         super.onPause();
 
         int selectedId = goal.getCheckedRadioButtonId();
+        int a = 0;
 
 
         if (selectedId != -1) {
             RadioButton selectedGoal = findViewById(selectedId);
-            UserInfo.getInstance().setGender(selectedGoal.getText().toString());
+
+
+            if(selectedGoal.getText().toString().equals("Gain weight")){
+                a =1;
+            }
+            if (selectedGoal.getText().toString().equals("Maintain weight")){
+                a =2;
+            }
+            if (selectedGoal.getText().toString().equals("Lose weight")){
+                a =3;
+            }
+
+            UserInfo.getInstance().setGoalStatus(a);
         }
 
         prefEditor.putInt("userGoal", selectedId);
