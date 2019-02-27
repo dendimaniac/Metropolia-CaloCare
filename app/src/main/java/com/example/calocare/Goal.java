@@ -24,7 +24,6 @@ public class Goal extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +43,16 @@ public class Goal extends AppCompatActivity {
         goal = findViewById(R.id.goal);
 
     }
+
     CompoundButton.OnCheckedChangeListener nListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 button4.setEnabled(true);
-
         }
     };
 
-
     public void nextActivity(View v) {
-        Intent nextActivity = new Intent(this, SpinnerActivity.class);
+        Intent nextActivity = new Intent(this, FoodChoice.class);
         startActivity(nextActivity);
     }
 
@@ -69,6 +67,7 @@ public class Goal extends AppCompatActivity {
             goal.check(checkId);
         }
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -76,10 +75,7 @@ public class Goal extends AppCompatActivity {
         int selectedId = goal.getCheckedRadioButtonId();
         int a = 0;
 
-
         if (selectedId != -1) {
-
-
             if (selectedId == R.id.radioButton) {
                 a = 1;
             }
@@ -89,11 +85,8 @@ public class Goal extends AppCompatActivity {
             if (selectedId == R.id.radioButton3) {
                 a = 3;
             }
-
-
             UserInfo.getInstance().setGoalStatus(a);
         }
-
         prefEditor.putInt("userGoal", selectedId);
         prefEditor.commit();
     }
