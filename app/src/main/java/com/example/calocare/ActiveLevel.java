@@ -95,7 +95,7 @@ public class ActiveLevel extends AppCompatActivity {
             UserInfo.getInstance().setActiveStatus(a);
         }
 
-        prefEditor.putInt("userGoal", selectedId);
+        prefEditor.putInt("userActive", selectedId);
         prefEditor.commit();
     }
 }
