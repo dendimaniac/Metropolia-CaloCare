@@ -2,7 +2,8 @@ package NonActivityClasses;
 
 public class UserInfo {
     private static final UserInfo userInstance = new UserInfo();
-    private int age, height, weight, activeStatus, goalStatus;
+    private int age, height, weight, goalStatus;
+    private double activeStatus;
     private String name, gender;
 
     public static UserInfo getInstance(){
@@ -25,7 +26,7 @@ public class UserInfo {
     public void setWeight(int newWeight){
         weight = newWeight;
     }
-    public void setActiveStatus(int newActiveStatus){
+    public void setActiveStatus(double newActiveStatus){
         activeStatus = newActiveStatus;
     }
     public void setGoalStatus( int newGoalStatus){
@@ -48,7 +49,7 @@ public class UserInfo {
     public int getWeight(){
         return weight;
     }
-    public int getActiveStatus(){
+    public double getActiveStatus(){
         return activeStatus;
     }
     public int getGoalStatus(){

@@ -72,20 +72,20 @@ public class ActiveLevel extends AppCompatActivity {
         super.onPause();
 
         int selectedId = level.getCheckedRadioButtonId();
-        int a = 0;
+        double a = 0.0;
 
 
         if (selectedId != -1) {
 
 
             if (selectedId == R.id.notactive) {
-                a = 1;
+                a = 1.2;
             }
             if (selectedId == R.id.slightlyactive) {
-                a = 2;
+                a = 1.55;
             }
             if (selectedId == R.id.active) {
-                a = 3;
+                a = 1.9;
             }
 
             UserInfo.getInstance().setActiveStatus(a);
