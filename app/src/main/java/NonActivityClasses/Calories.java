@@ -1,20 +1,34 @@
 package NonActivityClasses;
 
 public class Calories {
-    private int a= UserInfo.getInstance().getGoalStatus();
+    private static final Calories caloriesInstance = new Calories();
+
+    private int a = UserInfo.getInstance().getGoalStatus();
     private double calcServingCalo;
     private int caloOfGoal;
-    public double maxCalo(){
+    private int addedCalo = 0;
+    private int maxCalo = 0;
+
+    public static Calories getInstance() {
+        return caloriesInstance;
+    }
+
+    public int maxCalo(){
         if(a==1){ caloOfGoal= -500;}
         else if(a==2){caloOfGoal=0;}
         else if(a==3){caloOfGoal=500;}
-        return UserInfo.getInstance().getTDEE()+caloOfGoal;
+        maxCalo = (int)(Math.round(UserInfo.getInstance().getTDEE()) + caloOfGoal);
+        return maxCalo;
     }
-    public double calcServingCalo(Food input){
+    public void calcServingCalo(Food input){
         calcServingCalo= input.getCalories()* input.getNumOfServ();
-        return calcServingCalo;
+        addedCalo += calcServingCalo;
     }
-    public double calcRemain(){
-       return  UserInfo.getInstance().getTDEE()- calcServingCalo;
+    public int calcRemain(){
+        return maxCalo - addedCalo;
+    }
+
+    public int getAddedCalo() {
+        return addedCalo;
     }
 }

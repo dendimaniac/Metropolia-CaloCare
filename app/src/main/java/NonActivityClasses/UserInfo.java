@@ -20,7 +20,7 @@ public class UserInfo {
         age = newAge;
     }
     public void setHeight(int newHeight){
-        age = newHeight;
+        height = newHeight;
     }
     public void setWeight(int newWeight){
         weight = newWeight;
@@ -57,10 +57,10 @@ public class UserInfo {
 
     public double getBMR(){
         double BMR = 0;
-        if (gender == "Male"){
+        if (gender.equals("Male")){
             BMR = (66.47 + (13.7 * weight) + (5 * height) - (6.8 * age ));
         }
-        else if ( gender == "Female"){
+        else if (gender.equals("Female")){
             BMR = (655.1 + (9.6 * weight) + (1.8 * height) - (4.7 * age));
         }
         return BMR;

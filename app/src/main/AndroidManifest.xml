@@ -37,8 +37,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ActiveLevel" />
         </activity>
-        <activity android:name=".FoodChoice" />
-        <activity android:name=".FoodInfo"></activity>
+        <activity android:name=".GiaoDienChinh"></activity>
+        <activity
+            android:name=".FoodChoice"
+            android:parentActivityName=".GiaoDienChinh">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".GiaoDienChinh"/>
+        </activity>
+        <activity
+            android:name=".FoodInfo"
+            android:parentActivityName=".FoodChoice">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FoodChoice"/>
+        </activity>
     </application>
 
 </manifest>

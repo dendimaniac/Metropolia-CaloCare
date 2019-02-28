@@ -36,10 +36,11 @@
     <string name="txt_numOfServ">Number of servings</string>
     <string name="txt_add">Add</string>
     <string name="food_info_title">Food Info</string>
-    <string name="txt_caloRemian">Caloiries Remaining</string>
+    <string name="txt_caloRemian">Calories Remaining</string>
     <string name="txt_minus">-</string>
     <string name="txt_equal">=</string>
     <string name="txt_goal">Goal</string>
     <string name="txt_Food_main">Food</string>
     <string name="txt_remaing">Remaining</string>
+    <string name="txt_to_add_food">Add Food</string>
 </resources>

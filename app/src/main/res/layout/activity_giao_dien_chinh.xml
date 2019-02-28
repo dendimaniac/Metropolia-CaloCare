@@ -10,42 +10,39 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txt_goal"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_goal"
+        app:layout_constraintStart_toStartOf="@+id/tv_goal"
+        app:layout_constraintTop_toBottomOf="@+id/tv_goal" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginLeft="95dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txt_Food_main"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_food"
+        app:layout_constraintStart_toStartOf="@+id/tv_food"
+        app:layout_constraintTop_toBottomOf="@+id/tv_food" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/txt_remaing"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_remain"
+        app:layout_constraintStart_toStartOf="@+id/tv_remain"
+        app:layout_constraintTop_toBottomOf="@+id/tv_remain" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
@@ -56,67 +53,80 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tv_goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:text="2760"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
+        android:layout_marginTop="24dp"
         android:text="400"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_remain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginTop="24dp"
         android:text="2360"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="65dp"
         android:text="@string/txt_minus"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40sp"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_goal"
+        app:layout_constraintEnd_toStartOf="@+id/tv_food"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_goal"
+        app:layout_constraintTop_toTopOf="@+id/tv_goal" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginRight="45dp"
         android:text="@string/txt_equal"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="40sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_remain"
+        app:layout_constraintEnd_toStartOf="@+id/tv_remain"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_food"
+        app:layout_constraintTop_toTopOf="@+id/tv_remain" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="toAdd"
+        android:text="@string/txt_to_add_food"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -55,6 +55,10 @@ public class Food {
 
     public void setNumOfServ(int amount) { numOfServ = amount; }
 
+    public String getServingSize() {
+        return this.servingSize;
+    }
+
     public ArrayList<Integer> getFoodInfo() {
         foodInfo.addAll(Arrays.asList(calories, carbs, protein, fat, fiber, cholesterol, calcium));
         return foodInfo;

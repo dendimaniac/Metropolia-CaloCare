@@ -52,7 +52,7 @@ public class Goal extends AppCompatActivity {
     };
 
     public void nextActivity(View v) {
-        Intent nextActivity = new Intent(this, FoodChoice.class);
+        Intent nextActivity = new Intent(this, GiaoDienChinh.class);
         startActivity(nextActivity);
     }
 
