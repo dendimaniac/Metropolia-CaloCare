@@ -9,14 +9,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Goal"></activity>
-        <activity android:name=".ActiveLevel"></activity>
         <activity android:name=".BasicInfo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".BMRInFo"
+            android:parentActivityName=".BasicInfo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BasicInfo" />
+        </activity>
+        <activity
+            android:name=".ActiveLevel"
+            android:parentActivityName=".BMRInFo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BMRInFo" />
+        </activity>
+        <activity
+            android:name=".Goal"
+            android:parentActivityName=".ActiveLevel">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ActiveLevel" />
+        </activity>
+        <activity android:name=".GiaoDienChinh"></activity>
+        <activity
+            android:name=".FoodChoice"
+            android:parentActivityName=".GiaoDienChinh">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".GiaoDienChinh"/>
+        </activity>
+        <activity
+            android:name=".FoodInfo"
+            android:parentActivityName=".FoodChoice">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FoodChoice"/>
         </activity>
     </application>
 
