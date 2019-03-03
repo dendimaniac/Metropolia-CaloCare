@@ -20,6 +20,8 @@ public class GiaoDienChinh extends AppCompatActivity {
     private TextView caloAdded;
     private TextView caloRemain;
 
+    private int a;
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
@@ -36,10 +38,8 @@ public class GiaoDienChinh extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        print();
 
-        caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
-        caloAdded.setText(String.valueOf(Calories.getInstance().getAddedCalo()));
-        caloRemain.setText(String.valueOf(Calories.getInstance().calcRemain()));
     }
 
     @Override
@@ -54,5 +54,15 @@ public class GiaoDienChinh extends AppCompatActivity {
     public void toAdd(View v) {
         Intent nextActivity = new Intent(this, FoodChoice.class);
         startActivity(nextActivity);
+    }
+    public void toReset(View v) {
+        Calories.getInstance().reset();
+        print();
+
+    }
+    public void print(){
+        caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
+        caloAdded.setText(String.valueOf(Calories.getInstance().getAddedCalo()));
+        caloRemain.setText(String.valueOf(Calories.getInstance().calcRemain()));
     }
 }

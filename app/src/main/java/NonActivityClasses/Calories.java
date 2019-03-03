@@ -31,4 +31,9 @@ public class Calories {
     public int getAddedCalo() {
         return addedCalo;
     }
+
+    public int reset(){
+        addedCalo =0;
+        return addedCalo;
+    }
 }
