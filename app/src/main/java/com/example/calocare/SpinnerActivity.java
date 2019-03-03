@@ -26,6 +26,7 @@ public class SpinnerActivity extends AppCompatActivity {
         list.add("3");
         list.add("4");
         list.add("5");
+
         ArrayAdapter<String> adapter=new ArrayAdapter(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
