@@ -19,8 +19,10 @@ public class Goal extends AppCompatActivity {
     private RadioButton rb1;
     private RadioButton rb2;
     private RadioButton rb3;
-    private Button button4;
     private RadioGroup goal;
+
+    private Button next;
+
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
@@ -29,10 +31,10 @@ public class Goal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
 
-        rb1 = findViewById(R.id.radioButton);
-        rb2 = findViewById(R.id.radioButton2);
-        rb3 = findViewById(R.id.radioButton3);
-        button4 = findViewById(R.id.next);
+        rb1 = findViewById(R.id.lose);
+        rb2 = findViewById(R.id.maintain);
+        rb3 = findViewById(R.id.gain);
+        next = findViewById(R.id.next);
 
         rb1.setOnCheckedChangeListener(nListener);
         rb2.setOnCheckedChangeListener(nListener);
@@ -47,14 +49,16 @@ public class Goal extends AppCompatActivity {
     CompoundButton.OnCheckedChangeListener nListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                button4.setEnabled(true);
+                next.setEnabled(true);
         }
     };
+
 
     public void nextActivity(View v) {
         Intent nextActivity = new Intent(this, GiaoDienChinh.class);
         startActivity(nextActivity);
     }
+
 
     @Override
     protected void onResume() {
@@ -68,6 +72,7 @@ public class Goal extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -76,18 +81,20 @@ public class Goal extends AppCompatActivity {
         int a = 0;
 
         if (selectedId != -1) {
-            if (selectedId == R.id.radioButton) {
+            if (selectedId == R.id.lose) {
                 a = 1;
             }
-            if (selectedId == R.id.radioButton2) {
+            if (selectedId == R.id.maintain) {
                 a = 2;
             }
-            if (selectedId == R.id.radioButton3) {
+            if (selectedId == R.id.gain) {
                 a = 3;
             }
+            
             UserInfo.getInstance().setGoalStatus(a);
         }
         prefEditor.putInt("userGoal", selectedId);
         prefEditor.commit();
     }
+
 }

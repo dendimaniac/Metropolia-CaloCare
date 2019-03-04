@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/lose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#3f7628"
@@ -51,7 +51,7 @@
             tools:layout_editor_absoluteY="245dp" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#3f7628"
@@ -63,7 +63,7 @@
             tools:layout_editor_absoluteY="428dp" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/gain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#3f7628"
