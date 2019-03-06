@@ -23,7 +23,7 @@ public class FoodInfo extends AppCompatActivity {
     private String nutrionUnit = "mg";
     private Food selectedFood;
 
-    private int a = 1 ;
+    //private int a = 1 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +36,26 @@ public class FoodInfo extends AppCompatActivity {
         spin = findViewById(R.id.numOfServ);
         //Gán Data source (arr) vào Adapter
 
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
         for (int x = 1; x <= 100; x++) {
             list.add(String.valueOf(x));
-
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
 
+        Bundle b = getIntent().getExtras();
+        int index = b.getInt("foodIndex", 0);
+        selectedFood = FoodList.getInstance().getFood(index);
 
         // Optional: Sau khi click xong thi lam gi tiep theo?  SaveReferrence or whatever
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedFood.setNumOfServ(Integer.parseInt(adapterView.getItemAtPosition(i).toString()));
-                a = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
-                System.out.println(a);
+                selectedFood.setNumOfServ(Integer.valueOf(adapterView.getItemAtPosition(i).toString()));
+                //a = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+                //System.out.println(a);
 
             }
 
@@ -63,17 +65,9 @@ public class FoodInfo extends AppCompatActivity {
             }
         });
 
-
-
-        Bundle b = getIntent().getExtras();
-        int index = b.getInt("foodIndex", 0);
-        selectedFood = FoodList.getInstance().getFood(index);
-        number();
-        System.out.println(a);
-
         ((TextView)findViewById(R.id.tv_foodName)).setText(selectedFood.toString());
         ((TextView)findViewById(R.id.tv_servSize)).setText(selectedFood.getServingSize());
-        ((TextView)findViewById(R.id.tv_calories)).setText((selectedFood.getCalories()* a));
+        ((TextView)findViewById(R.id.tv_calories)).setText((selectedFood.getCalories()));
         ((TextView)findViewById(R.id.tv_carbs)).setText(selectedFood.getCarbs() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_protein)).setText(selectedFood.getProtein() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_fat)).setText(selectedFood.getFat() + nutrionUnit);
@@ -82,9 +76,6 @@ public class FoodInfo extends AppCompatActivity {
         ((TextView)findViewById(R.id.tv_calcium)).setText(selectedFood.getCalcium() + nutrionUnit);
     }
 
-    public void number(){
-        a = selectedFood.getNumOfServ();
-    }
 
 
     public void addFood(View v) {

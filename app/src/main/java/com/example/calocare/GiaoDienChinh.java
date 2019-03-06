@@ -78,17 +78,10 @@ public class GiaoDienChinh extends AppCompatActivity {
         user.setHeight(pref.getInt("userHeight", 0));
         user.setWeight(pref.getInt("userWeight", 0));
 
-        getText1 = pref.getString("userActiveText", "");
-        if (getText1.equals(R.string.rDbtn_active)) {
-            active = 1.9;
-        } else if (getText1.equals(R.string.rDbtn_slightlyActive)) {
-            active = 1.55;
-        } else if (getText1.equals(R.string.rDbtn_notActive)) {
-            active = 1.2;
-        }
-        user.setActiveStatus(active);
 
-        getText2 = pref.getString("userGoalText", "");
+        user.setActiveStatus(pref.getFloat("userActiveVal", 0));
+
+        /*getText2 = pref.getString("userGoalText", "");
         if (getText2.equals(R.string.txt_lose)) {
             goal = 1;
         } else if (getText2.equals(R.string.txt_maintain)) {
@@ -96,6 +89,14 @@ public class GiaoDienChinh extends AppCompatActivity {
         } else if (getText2.equals(R.string.txt_gain)) {
             goal = 3;
         }
-        user.setGoalStatus(goal);
+        getText1 = pref.getString("userActiveText", "");
+        if (getText1.equals(R.string.rDbtn_active)) {
+            active = 1.9;
+        } else if (getText1.equals(R.string.rDbtn_slightlyActive)) {
+            active = 1.55;
+        } else if (getText1.equals(R.string.rDbtn_notActive)) {
+            active = 1.2;
+        }*/
+        user.setGoalStatus(pref.getInt("userGoalVal", 0));
     }
 }

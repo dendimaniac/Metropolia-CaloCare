@@ -95,7 +95,7 @@ public class Goal extends AppCompatActivity {
             UserInfo.getInstance().setGoalStatus(a);
         }
         prefEditor.putInt("userGoal", selectedId);
-        prefEditor.putString("userGoalText", selectedGoal.getText().toString());
+        prefEditor.putInt("userGoalVal", a);
         prefEditor.commit();
     }
 

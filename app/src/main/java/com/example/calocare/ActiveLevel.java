@@ -92,7 +92,8 @@ public class ActiveLevel extends AppCompatActivity {
             UserInfo.getInstance().setActiveStatus(a);
         }
         prefEditor.putInt("userActive", selectedId);
-        prefEditor.putString("userActiveText", selectedActive.getText().toString());
+        //prefEditor.putString("userActiveText", selectedActive.getText().toString());
+        prefEditor.putFloat("userActiveVal", (float) a);
         prefEditor.commit();
     }
 }
