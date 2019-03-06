@@ -16,9 +16,9 @@ public class SpinnerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spinner);
-        selection =(TextView) findViewById(R.id.selection);
+        selection = findViewById(R.id.selection);
         //Lấy đối tượng Spinner ra
-        spin=(Spinner) findViewById(R.id.spinner1);
+        spin= findViewById(R.id.spinner1);
         //Gán Data source (arr) vào Adapter
         List<String> list = new ArrayList<>();
         list.add("1");

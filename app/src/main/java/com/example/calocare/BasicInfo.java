@@ -130,7 +130,7 @@ public class BasicInfo extends AppCompatActivity {
     };
 
     private void validateNext() {
-        nextBtn.setEnabled(hasFilled() ? true : false);
+        nextBtn.setEnabled(hasFilled());
     }
 
     public void nextActivity(View v) {
@@ -139,13 +139,9 @@ public class BasicInfo extends AppCompatActivity {
     }
 
     private boolean hasFilled() {
-        if (TextUtils.isEmpty(AppControl.getText(nameTxt))
-                || TextUtils.isEmpty(AppControl.getText(ageTxt))
-                || onChecked == false) {
-            return false;
-        } else {
-            return true;
-        }
+        return !TextUtils.isEmpty(AppControl.getText(nameTxt))
+                && !TextUtils.isEmpty(AppControl.getText(ageTxt))
+                && onChecked != false;
     }
 
 
