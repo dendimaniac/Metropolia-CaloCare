@@ -3,7 +3,7 @@ package NonActivityClasses;
 public class Calories {
     private static final Calories caloriesInstance = new Calories();
 
-    private int a = UserInfo.getInstance().getGoalStatus();
+    private int a;
     private double calcServingCalo;
     private int caloOfGoal;
     private int addedCalo = 0;
@@ -14,6 +14,8 @@ public class Calories {
     }
 
     public int maxCalo(){
+        a = UserInfo.getInstance().getGoalStatus();
+
         if(a==1){ caloOfGoal= -500;}
         else if(a==2){caloOfGoal=0;}
         else if(a==3){caloOfGoal=500;}
@@ -21,7 +23,7 @@ public class Calories {
         return maxCalo;
     }
     public void calcServingCalo(Food input){
-        calcServingCalo= input.getCalories()* input.getNumOfServ();
+        calcServingCalo = input.getCalories()* input.getNumOfServ();
         addedCalo += calcServingCalo;
     }
     public int calcRemain(){

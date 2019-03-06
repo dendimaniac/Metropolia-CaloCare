@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import NonActivityClasses.AppControl;
 import NonActivityClasses.Calories;
+import NonActivityClasses.UserInfo;
 
 public class GiaoDienChinh extends AppCompatActivity {
     private SharedPreferences pref;
@@ -20,6 +21,7 @@ public class GiaoDienChinh extends AppCompatActivity {
     private TextView caloAdded;
     private TextView caloRemain;
 
+    private UserInfo user = UserInfo.getInstance();
     private int a;
 
     @Override
@@ -33,13 +35,14 @@ public class GiaoDienChinh extends AppCompatActivity {
         caloGoal = findViewById(R.id.tv_goal);
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
+
+        setUserValue();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         print();
-
     }
 
     @Override
@@ -58,11 +61,41 @@ public class GiaoDienChinh extends AppCompatActivity {
     public void toReset(View v) {
         Calories.getInstance().reset();
         print();
-
     }
     public void print(){
         caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
         caloAdded.setText(String.valueOf(Calories.getInstance().getAddedCalo()));
         caloRemain.setText(String.valueOf(Calories.getInstance().calcRemain()));
+    }
+
+    private void setUserValue() {
+        String getText1, getText2;
+        double active = 0;
+        int goal = 0;
+
+        user.setAge(pref.getInt("userAge", 0));
+        user.setGender(pref.getString("userGenderText", ""));
+        user.setHeight(pref.getInt("userHeight", 0));
+        user.setWeight(pref.getInt("userWeight", 0));
+
+        getText1 = pref.getString("userActiveText", "");
+        if (getText1.equals(R.string.rDbtn_active)) {
+            active = 1.9;
+        } else if (getText1.equals(R.string.rDbtn_slightlyActive)) {
+            active = 1.55;
+        } else if (getText1.equals(R.string.rDbtn_notActive)) {
+            active = 1.2;
+        }
+        user.setActiveStatus(active);
+
+        getText2 = pref.getString("userGoalText", "");
+        if (getText2.equals(R.string.txt_lose)) {
+            goal = 1;
+        } else if (getText2.equals(R.string.txt_maintain)) {
+            goal = 2;
+        } else if (getText2.equals(R.string.txt_gain)) {
+            goal = 3;
+        }
+        user.setGoalStatus(goal);
     }
 }

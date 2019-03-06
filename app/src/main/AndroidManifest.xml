@@ -37,7 +37,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ActiveLevel" />
         </activity>
-        <activity android:name=".GiaoDienChinh"></activity>
+        <activity android:name=".GiaoDienChinh">
+
+        </activity>
         <activity
             android:name=".FoodChoice"
             android:parentActivityName=".GiaoDienChinh">

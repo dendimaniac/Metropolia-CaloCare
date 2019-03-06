@@ -78,6 +78,7 @@ public class Goal extends AppCompatActivity {
         super.onPause();
 
         int selectedId = goal.getCheckedRadioButtonId();
+        RadioButton selectedGoal = findViewById(selectedId);
         int a = 0;
 
         if (selectedId != -1) {
@@ -90,10 +91,11 @@ public class Goal extends AppCompatActivity {
             if (selectedId == R.id.gain) {
                 a = 3;
             }
-            
+
             UserInfo.getInstance().setGoalStatus(a);
         }
         prefEditor.putInt("userGoal", selectedId);
+        prefEditor.putString("userGoalText", selectedGoal.getText().toString());
         prefEditor.commit();
     }
 

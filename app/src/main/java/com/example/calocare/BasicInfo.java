@@ -88,6 +88,7 @@ public class BasicInfo extends AppCompatActivity {
         super.onPause();
 
         int selectedId = gender.getCheckedRadioButtonId();
+        RadioButton selectedGender = findViewById(selectedId);
         int defaultAge = 0;
 
         if (!TextUtils.isEmpty(AppControl.getText(nameTxt))) {
@@ -98,12 +99,12 @@ public class BasicInfo extends AppCompatActivity {
             UserInfo.getInstance().setAge(defaultAge);
         }
         if (selectedId != -1) {
-            RadioButton selectedGender = findViewById(selectedId);
             UserInfo.getInstance().setGender(selectedGender.getText().toString());
         }
         prefEditor.putString("userName", AppControl.getText(nameTxt));
         prefEditor.putInt("userAge", defaultAge);
         prefEditor.putInt("userGender", selectedId);
+        prefEditor.putString("userGenderText", selectedGender.getText().toString());
         prefEditor.commit();
     }
 

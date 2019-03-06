@@ -22,6 +22,7 @@ public class FoodInfo extends AppCompatActivity {
     private Spinner spin;
     private String nutrionUnit = "mg";
     private Food selectedFood;
+
     private int a = 1 ;
 
     @Override
@@ -62,19 +63,27 @@ public class FoodInfo extends AppCompatActivity {
             }
         });
 
+
+
         Bundle b = getIntent().getExtras();
         int index = b.getInt("foodIndex", 0);
         selectedFood = FoodList.getInstance().getFood(index);
+        number();
+        System.out.println(a);
 
         ((TextView)findViewById(R.id.tv_foodName)).setText(selectedFood.toString());
         ((TextView)findViewById(R.id.tv_servSize)).setText(selectedFood.getServingSize());
-        ((TextView)findViewById(R.id.tv_calories)).setText((selectedFood.getCalories() * a) + nutrionUnit);
+        ((TextView)findViewById(R.id.tv_calories)).setText((selectedFood.getCalories()* a));
         ((TextView)findViewById(R.id.tv_carbs)).setText(selectedFood.getCarbs() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_protein)).setText(selectedFood.getProtein() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_fat)).setText(selectedFood.getFat() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_fiber)).setText(selectedFood.getFiber() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_cholesterol)).setText(selectedFood.getCholesterol() + nutrionUnit);
         ((TextView)findViewById(R.id.tv_calcium)).setText(selectedFood.getCalcium() + nutrionUnit);
+    }
+
+    public void number(){
+        a = selectedFood.getNumOfServ();
     }
 
 

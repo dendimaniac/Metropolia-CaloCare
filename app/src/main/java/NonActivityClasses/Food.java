@@ -22,6 +22,7 @@ public class Food {
     }
 
     public int getCalories() {
+
         return calories;
     }
 
