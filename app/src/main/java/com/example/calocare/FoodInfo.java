@@ -20,7 +20,7 @@ import NonActivityClasses.UserInfo;
 
 public class FoodInfo extends AppCompatActivity {
     private Spinner spin;
-    private String nutrionUnit = "mg";
+    private String nutrionUnit = " mg";
     private Food selectedFood;
 
     //private int a = 1 ;
