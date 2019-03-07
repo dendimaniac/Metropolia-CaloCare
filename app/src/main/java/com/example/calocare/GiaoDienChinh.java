@@ -1,6 +1,9 @@
 package com.example.calocare;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +11,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
+import NonActivityClasses.AlarmResetFoodAdded;
 import NonActivityClasses.AppControl;
 import NonActivityClasses.Calories;
 import NonActivityClasses.UserInfo;
@@ -15,6 +21,9 @@ import NonActivityClasses.UserInfo;
 public class GiaoDienChinh extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
+
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
 
     private TextView caloGoal;
     private TextView caloAdded;
@@ -39,6 +48,7 @@ public class GiaoDienChinh extends AppCompatActivity {
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
 
+        setAlarm();
         setUserValue();
     }
 
@@ -95,5 +105,18 @@ public class GiaoDienChinh extends AppCompatActivity {
     private void toBasicInfo() {
         Intent nextActivity = new Intent(this, BasicInfo.class);
         startActivity(nextActivity);
+    }
+
+    private void setAlarm() {
+        alarmMgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmResetFoodAdded.class);
+        alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 00);
+
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, alarmIntent);
     }
 }
