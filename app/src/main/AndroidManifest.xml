@@ -39,7 +39,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".FoodChoice"
@@ -56,5 +55,4 @@
                 android:value=".FoodChoice"/>
         </activity>
     </application>
-
 </manifest>
