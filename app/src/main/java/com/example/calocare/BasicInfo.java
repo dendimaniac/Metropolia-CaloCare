@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -18,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
+import NonActivityClasses.InputFilterMinMax;
 import NonActivityClasses.UserInfo;
 
 public class BasicInfo extends AppCompatActivity {
@@ -48,6 +50,7 @@ public class BasicInfo extends AppCompatActivity {
 
         nameTxt.addTextChangedListener(watcher);
         ageTxt.addTextChangedListener(watcher);
+        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "110", this) });
 
         ageTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
@@ -65,7 +68,7 @@ public class BasicInfo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int age = pref.getInt("userAge", 0);
+        int age = pref.getInt("userAge", 1);
         int checkId = pref.getInt("userGender", -1);
 
         nameTxt.setText(pref.getString("userName", ""));
@@ -89,7 +92,7 @@ public class BasicInfo extends AppCompatActivity {
 
         int selectedId = gender.getCheckedRadioButtonId();
         RadioButton selectedGender = findViewById(selectedId);
-        int defaultAge = 0;
+        int defaultAge = 1;
 
         if (!TextUtils.isEmpty(AppControl.getText(nameTxt))) {
             UserInfo.getInstance().setName(AppControl.getText(nameTxt));

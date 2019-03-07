@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import NonActivityClasses.AppControl;
+import NonActivityClasses.InputFilterMinMax;
 import NonActivityClasses.UserInfo;
 
 public class BMRInFo extends AppCompatActivity {
@@ -41,6 +43,9 @@ public class BMRInFo extends AppCompatActivity {
 
         heightTxt.addTextChangedListener(watcher);
         weightTxt.addTextChangedListener(watcher);
+
+        heightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "300", this) });
+        weightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "250", this) });
 
         heightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
         weightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
