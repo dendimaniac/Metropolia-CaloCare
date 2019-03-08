@@ -84,7 +84,7 @@ public class GiaoDienChinh extends AppCompatActivity {
 
         caloGoal.setText(String.valueOf(/*pref.getInt("foodGoal",*/ Calories.getInstance().maxCalo()));
         caloAdded.setText(String.valueOf(pref.getInt("foodAdded", 0)));
-        caloRemain.setText(String.valueOf(pref.getInt("foodRemain", Calories.getInstance().calcRemain())));
+        caloRemain.setText(String.valueOf(/*pref.getInt("foodRemain",*/ Calories.getInstance().calcRemain()));
     }
 
     private void setUserValue() {
