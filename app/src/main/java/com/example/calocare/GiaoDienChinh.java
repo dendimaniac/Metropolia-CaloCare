@@ -3,10 +3,19 @@ package com.example.calocare;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextClock;
 import android.widget.TextView;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+
+
+
+
 
 import NonActivityClasses.AppControl;
 import NonActivityClasses.Calories;
@@ -19,10 +28,16 @@ public class GiaoDienChinh extends AppCompatActivity {
     private TextView caloGoal;
     private TextView caloAdded;
     private TextView caloRemain;
+    private String formatdate;
 
     private UserInfo user = UserInfo.getInstance();
     private int a;
 
+
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
@@ -39,8 +54,21 @@ public class GiaoDienChinh extends AppCompatActivity {
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
 
+
         setUserValue();
         print();
+
+        TextClock textClock = findViewById(R.id.textClock);
+
+        formatdate = "HH:mm:ss";
+        textClock.setFormat12Hour(null);
+        textClock.setFormat24Hour(formatdate);
+
+
+
+        setAlarm();
+
+
 
     }
 
@@ -100,4 +128,14 @@ public class GiaoDienChinh extends AppCompatActivity {
         Intent nextActivity = new Intent(this, BasicInfo.class);
         startActivity(nextActivity);
     }
+
+
+    private void setAlarm() {
+
+
+
+
+
+    }
+
 }
