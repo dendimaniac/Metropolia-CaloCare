@@ -50,7 +50,7 @@ public class BasicInfo extends AppCompatActivity {
 
         nameTxt.addTextChangedListener(watcher);
         ageTxt.addTextChangedListener(watcher);
-        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "110", this) });
+        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "150", this) });
 
         ageTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 

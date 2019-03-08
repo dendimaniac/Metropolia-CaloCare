@@ -40,12 +40,13 @@ public class GiaoDienChinh extends AppCompatActivity {
         caloRemain = findViewById(R.id.tv_remain);
 
         setUserValue();
+        print();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        print();
     }
 
     @Override
@@ -58,7 +59,7 @@ public class GiaoDienChinh extends AppCompatActivity {
             prefEditor.commit();
         }
     }
-
+    
     public void addFood(View v) {
         Intent nextActivity = new Intent(this, FoodChoice.class);
         startActivity(nextActivity);
@@ -78,8 +79,11 @@ public class GiaoDienChinh extends AppCompatActivity {
     }
 
     public void print(){
-        caloGoal.setText(String.valueOf(pref.getInt("foodGoal", Calories.getInstance().maxCalo())));
-        caloAdded.setText(String.valueOf(pref.getInt("foodAdded", Calories.getInstance().getAddedCalo())));
+        a = pref.getInt("foodAdded", 0);
+        Calories.getInstance().setAddedCalo(a);
+
+        caloGoal.setText(String.valueOf(/*pref.getInt("foodGoal",*/ Calories.getInstance().maxCalo()));
+        caloAdded.setText(String.valueOf(pref.getInt("foodAdded", 0)));
         caloRemain.setText(String.valueOf(pref.getInt("foodRemain", Calories.getInstance().calcRemain())));
     }
 
