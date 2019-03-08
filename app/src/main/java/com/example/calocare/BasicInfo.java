@@ -68,7 +68,7 @@ public class BasicInfo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int age = pref.getInt("userAge", 1);
+        int age = pref.getInt("userAge", 0);
         int checkId = pref.getInt("userGender", -1);
 
         nameTxt.setText(pref.getString("userName", ""));

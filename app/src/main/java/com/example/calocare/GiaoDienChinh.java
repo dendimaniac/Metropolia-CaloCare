@@ -40,16 +40,17 @@ public class GiaoDienChinh extends AppCompatActivity {
         pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
-        if(pref.getString("userName", "").equals("")) {
-            toBasicInfo();
-        }
-
         caloGoal = findViewById(R.id.tv_goal);
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
 
-        setAlarm();
-        setUserValue();
+        if(pref.getString("userName", "").equals("")) {
+            toBasicInfo();
+        } else {
+            setAlarm();
+            setUserValue();
+            reset(pref.getInt("foodAdded", 0));
+        }
     }
 
     @Override
@@ -80,17 +81,21 @@ public class GiaoDienChinh extends AppCompatActivity {
 
     public void toReset(View v) {
         Calories.getInstance().reset();
-        prefEditor.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-        prefEditor.putInt("foodAdded", 0);
-        prefEditor.putInt("foodRemain", Calories.getInstance().calcRemain());
-        prefEditor.commit();
+        reset(0);
         print();
     }
 
     public void print(){
+        /*
+        caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
+        caloAdded.setText(String.valueOf(Calories.getInstance().getAddedCalo()));
+        caloRemain.setText(String.valueOf(Calories.getInstance().calcRemain()));
+        */
+
         caloGoal.setText(String.valueOf(pref.getInt("foodGoal", Calories.getInstance().maxCalo())));
         caloAdded.setText(String.valueOf(pref.getInt("foodAdded", Calories.getInstance().getAddedCalo())));
         caloRemain.setText(String.valueOf(pref.getInt("foodRemain", Calories.getInstance().calcRemain())));
+
     }
 
     private void setUserValue() {
@@ -118,5 +123,14 @@ public class GiaoDienChinh extends AppCompatActivity {
 
         alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, alarmIntent);
+    }
+
+    private void reset(int foodAdded) {
+        Calories.getInstance().setAddedCalo(foodAdded);
+
+        prefEditor.putInt("foodGoal", Calories.getInstance().maxCalo());
+        prefEditor.putInt("foodAdded", foodAdded);
+        prefEditor.putInt("foodRemain", Calories.getInstance().calcRemain());
+        prefEditor.commit();
     }
 }
