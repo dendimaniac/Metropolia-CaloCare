@@ -18,5 +18,6 @@ public class AlarmResetFoodAdded extends BroadcastReceiver {
 
         prefEditor.putInt("foodAdded", 0);
         prefEditor.putInt("foodRemain", pref.getInt("foodGoal", 0) - 0);
+        prefEditor.commit();
     }
 }

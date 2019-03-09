@@ -19,8 +19,6 @@ import NonActivityClasses.InputFilterMinMax;
 import NonActivityClasses.UserInfo;
 
 public class BMRInFo extends AppCompatActivity {
-    private static final String PREF = "data";
-
     private EditText heightTxt;
     private EditText weightTxt;
     private Button nextBtn;
@@ -79,13 +77,10 @@ public class BMRInFo extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(AppControl.getText(heightTxt))) {
             defaultH = Integer.parseInt(AppControl.getText(heightTxt));
-            UserInfo.getInstance().setHeight(defaultH);
         }
         if (!TextUtils.isEmpty(AppControl.getText(weightTxt))) {
             defaultW = Integer.parseInt(AppControl.getText(weightTxt));
-            UserInfo.getInstance().setWeight(defaultW);
         }
-
         prefEditor.putInt("userHeight", defaultH);
         prefEditor.putInt("userWeight", defaultW);
         prefEditor.commit();

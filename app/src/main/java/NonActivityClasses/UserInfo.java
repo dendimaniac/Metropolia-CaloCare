@@ -4,7 +4,7 @@ public class UserInfo {
     private static final UserInfo userInstance = new UserInfo();
     private int age, height, weight, goalStatus;
     private double activeStatus;
-    private String name, gender;
+    private String name = "", gender = "";
 
     public static UserInfo getInstance(){
         return userInstance;

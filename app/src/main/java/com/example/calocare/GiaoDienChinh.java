@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -86,16 +87,9 @@ public class GiaoDienChinh extends AppCompatActivity {
     }
 
     public void print(){
-        /*
-        caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
-        caloAdded.setText(String.valueOf(Calories.getInstance().getAddedCalo()));
-        caloRemain.setText(String.valueOf(Calories.getInstance().calcRemain()));
-        */
-
         caloGoal.setText(String.valueOf(pref.getInt("foodGoal", Calories.getInstance().maxCalo())));
         caloAdded.setText(String.valueOf(pref.getInt("foodAdded", Calories.getInstance().getAddedCalo())));
         caloRemain.setText(String.valueOf(pref.getInt("foodRemain", Calories.getInstance().calcRemain())));
-
     }
 
     private void setUserValue() {
