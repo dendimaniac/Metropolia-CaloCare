@@ -83,7 +83,7 @@ public class FoodInfo extends AppCompatActivity {
     private void updateInfo() {
         ((TextView)findViewById(R.id.tv_foodName)).setText(selectedFood.toString());
         ((TextView)findViewById(R.id.tv_servSize)).setText(selectedFood.getServingSize());
-        ((TextView)findViewById(R.id.tv_calories)).setText(selectedFood.getCalories() * numOfServ + " Cal");
+        ((TextView)findViewById(R.id.tv_calories)).setText(selectedFood.getCalories() * numOfServ + " kcal");
         ((TextView)findViewById(R.id.tv_carbs)).setText(selectedFood.getCarbs() * numOfServ + nutriUnit);
         ((TextView)findViewById(R.id.tv_protein)).setText(selectedFood.getProtein() * numOfServ + nutriUnit);
         ((TextView)findViewById(R.id.tv_fat)).setText(selectedFood.getFat() * numOfServ + nutriUnit);
