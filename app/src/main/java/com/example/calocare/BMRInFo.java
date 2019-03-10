@@ -32,7 +32,7 @@ public class BMRInFo extends AppCompatActivity {
         setContentView(R.layout.activity_bmr_info);
         this.setTitle(R.string.bmr_info_title);
 
-        pref = getSharedPreferences(PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         heightTxt = findViewById(R.id.txt_height);
