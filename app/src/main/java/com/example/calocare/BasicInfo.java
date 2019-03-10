@@ -23,8 +23,6 @@ import NonActivityClasses.InputFilterMinMax;
 import NonActivityClasses.UserInfo;
 
 public class BasicInfo extends AppCompatActivity {
-    private static final String PREF = "data";
-
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
@@ -68,7 +66,7 @@ public class BasicInfo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int age = pref.getInt("userAge", 1);
+        int age = pref.getInt("userAge", 0);
         int checkId = pref.getInt("userGender", -1);
 
         nameTxt.setText(pref.getString("userName", ""));
@@ -91,23 +89,21 @@ public class BasicInfo extends AppCompatActivity {
         super.onPause();
 
         int selectedId = gender.getCheckedRadioButtonId();
-        RadioButton selectedGender = findViewById(selectedId);
-        int defaultAge = 1;
+        int defaultAge = 0;
 
         if (!TextUtils.isEmpty(AppControl.getText(nameTxt))) {
-            UserInfo.getInstance().setName(AppControl.getText(nameTxt));
+            prefEditor.putString("userName", AppControl.getText(nameTxt));
         }
         if (!TextUtils.isEmpty(AppControl.getText(ageTxt))) {
             defaultAge = Integer.parseInt(AppControl.getText(ageTxt));
-            UserInfo.getInstance().setAge(defaultAge);
+            prefEditor.putInt("userAge", defaultAge);
         }
         if (selectedId != -1) {
-            UserInfo.getInstance().setGender(selectedGender.getText().toString());
+            RadioButton selectedGender = findViewById(selectedId);
+
+            prefEditor.putString("userGenderText", selectedGender.getText().toString());
         }
-        prefEditor.putString("userName", AppControl.getText(nameTxt));
-        prefEditor.putInt("userAge", defaultAge);
         prefEditor.putInt("userGender", selectedId);
-        prefEditor.putString("userGenderText", selectedGender.getText().toString());
         prefEditor.commit();
     }
 
@@ -146,6 +142,4 @@ public class BasicInfo extends AppCompatActivity {
                 && !TextUtils.isEmpty(AppControl.getText(ageTxt))
                 && onChecked != false;
     }
-
-
 }

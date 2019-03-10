@@ -1,12 +1,16 @@
 package com.example.calocare;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -17,6 +21,9 @@ import android.app.PendingIntent;
 
 
 
+import java.util.Calendar;
+
+import NonActivityClasses.AlarmReceiver;
 import NonActivityClasses.AppControl;
 import NonActivityClasses.Calories;
 import NonActivityClasses.UserInfo;
@@ -25,8 +32,8 @@ public class GiaoDienChinh extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
-    private SharedPreferences pref1;
-    private SharedPreferences.Editor prefEditor1;
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
 
     private TextView caloGoal;
     private TextView caloAdded;
@@ -34,11 +41,10 @@ public class GiaoDienChinh extends AppCompatActivity {
     private String formatdate;
 
     private UserInfo user = UserInfo.getInstance();
-    private int a;
+    private int foodAdded;
 
-
-    private AlarmManager alarmMgr;
-    private PendingIntent alarmIntent;
+    private static final int code1 = 1;
+    private static final int code2 = 2;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
@@ -49,33 +55,26 @@ public class GiaoDienChinh extends AppCompatActivity {
         pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
-        pref1 = getSharedPreferences(AppControl.PREF1, Activity.MODE_PRIVATE);
-        prefEditor1 = pref1.edit();
-
-        if(pref.getString("userName", "").equals("")) {
-            toBasicInfo();
-        }
-
         caloGoal = findViewById(R.id.tv_goal);
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
 
-
-        setUserValue();
-        print();
-
-        TextClock textClock = findViewById(R.id.textClock);
-
-        formatdate = "HH:mm:ss";
-        textClock.setFormat12Hour(null);
-        textClock.setFormat24Hour(formatdate);
-
-
-
-        setAlarm();
-
-
-
+        if(pref.getInt("userGoalVal", 0) == 0) {
+            toBasicInfo();
+        } else {
+            boolean alarmUp1 = (PendingIntent.getBroadcast(this, code1,
+                    new Intent(this, AlarmReceiver.class),
+                    PendingIntent.FLAG_NO_CREATE) != null);
+            boolean alarmUp2 = (PendingIntent.getBroadcast(this, code2,
+                    new Intent(this, AlarmReceiver.class),
+                    PendingIntent.FLAG_NO_CREATE) != null);
+            Log.d("myTag", alarmUp1 + " + " + alarmUp2);
+            if (!(alarmUp1 || alarmUp2)) {
+                setAlarm(true);
+                setAlarm(false);
+            }
+            setUserValue();
+        }
     }
 
     @Override
@@ -113,12 +112,12 @@ public class GiaoDienChinh extends AppCompatActivity {
     }
 
     public void print(){
-        a = pref1.getInt("foodAdded", 0);
-        Calories.getInstance().setAddedCalo(a);
+        foodAdded = pref.getInt("foodAdded", 0);
+        Calories.getInstance().setAddedCalo(foodAdded);
 
-        caloGoal.setText(String.valueOf(/*pref.getInt("foodGoal",*/ Calories.getInstance().maxCalo()));
-        caloAdded.setText(String.valueOf(pref1.getInt("foodAdded", 0)));
-        caloRemain.setText(String.valueOf(/*pref.getInt("foodRemain",*/ Calories.getInstance().calcRemain()));
+        caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
+        caloAdded.setText(String.valueOf(foodAdded));
+        caloRemain.setText(String.valueOf(Calories.getInstance().calcRemain()));
     }
 
     private void setUserValue() {
@@ -135,13 +134,20 @@ public class GiaoDienChinh extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
+    public void setAlarm(boolean isMidnight) {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        intent.putExtra("isMidnight", isMidnight);
+        alarmIntent = PendingIntent.getBroadcast(this, isMidnight ? code1 : code2, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-    private void setAlarm() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.DATE, isMidnight ? 1 : 0);
+        calendar.set(Calendar.HOUR_OF_DAY, isMidnight ? 0 : 22);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
 
-
-
-
-
+        alarmMgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
     }
-
 }

@@ -1,7 +1,5 @@
 package NonActivityClasses;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.widget.EditText;
 
 public class AppControl {

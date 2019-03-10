@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calocare">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,9 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BasicInfo">
-
-        </activity>
+        <activity android:name=".BasicInfo"/>
         <activity
             android:name=".BMRInFo"
             android:parentActivityName=".BasicInfo">
@@ -54,5 +53,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".FoodChoice"/>
         </activity>
+        <receiver  android:process=":remote" android:name="NonActivityClasses.AlarmReceiver"></receiver>
     </application>
 </manifest>

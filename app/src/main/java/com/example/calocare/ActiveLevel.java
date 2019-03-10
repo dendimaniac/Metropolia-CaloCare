@@ -72,13 +72,9 @@ public class ActiveLevel extends AppCompatActivity {
         super.onPause();
 
         int selectedId = level.getCheckedRadioButtonId();
-        RadioButton selectedActive = findViewById(selectedId);
         double a = 0.0;
 
-
         if (selectedId != -1) {
-
-
             if (selectedId == R.id.notactive) {
                 a = 1.2;
             }
@@ -88,8 +84,6 @@ public class ActiveLevel extends AppCompatActivity {
             else if (selectedId == R.id.active) {
                 a = 1.9;
             }
-
-            UserInfo.getInstance().setActiveStatus(a);
         }
         prefEditor.putInt("userActive", selectedId);
         prefEditor.putFloat("userActiveVal", (float) a);

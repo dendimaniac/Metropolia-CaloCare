@@ -16,13 +16,9 @@ public class Calories {
     public int maxCalo() {
         a = UserInfo.getInstance().getGoalStatus();
 
-        if (a == 1) {
-            caloOfGoal = -500;
-        } else if (a == 2) {
-            caloOfGoal = 0;
-        } else if (a == 3) {
-            caloOfGoal = 500;
-        }
+        if (a == 1){ caloOfGoal= -500; }
+        else if (a == 2){ caloOfGoal=0; }
+        else if (a == 3){ caloOfGoal=500; }
         maxCalo = (int) (Math.round(UserInfo.getInstance().getTDEE()) + caloOfGoal);
         return maxCalo;
     }
@@ -31,7 +27,7 @@ public class Calories {
         addedCalo = a;
     }
     public void calcServingCalo(Food input){
-        calcServingCalo = input.getCalories()* input.getNumOfServ();
+        calcServingCalo = input.getCalories() * input.getNumOfServ();
         addedCalo += calcServingCalo;
     }
     public int calcRemain(){
@@ -42,8 +38,11 @@ public class Calories {
         return addedCalo;
     }
 
-    public int reset(){
-        addedCalo =0;
-        return addedCalo;
+    public void setAddedCalo(int newAddedCalo) {
+        addedCalo = newAddedCalo;
+    }
+
+    public void reset(){
+        addedCalo = 0;
     }
 }
