@@ -25,6 +25,9 @@ public class GiaoDienChinh extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
+    private SharedPreferences pref1;
+    private SharedPreferences.Editor prefEditor1;
+
     private TextView caloGoal;
     private TextView caloAdded;
     private TextView caloRemain;
@@ -45,6 +48,9 @@ public class GiaoDienChinh extends AppCompatActivity {
 
         pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
+
+        pref1 = getSharedPreferences(AppControl.PREF1, Activity.MODE_PRIVATE);
+        prefEditor1 = pref1.edit();
 
         if(pref.getString("userName", "").equals("")) {
             toBasicInfo();
@@ -81,10 +87,10 @@ public class GiaoDienChinh extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (Integer.parseInt(caloGoal.getText().toString()) != 0) {
-            prefEditor.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-            prefEditor.putInt("foodAdded", Integer.parseInt(caloAdded.getText().toString()));
-            prefEditor.putInt("foodRemain", Integer.parseInt(caloRemain.getText().toString()));
-            prefEditor.commit();
+            prefEditor1.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
+            prefEditor1.putInt("foodAdded", Integer.parseInt(caloAdded.getText().toString()));
+            prefEditor1.putInt("foodRemain", Integer.parseInt(caloRemain.getText().toString()));
+            prefEditor1.commit();
         }
     }
     
@@ -99,19 +105,19 @@ public class GiaoDienChinh extends AppCompatActivity {
 
     public void toReset(View v) {
         Calories.getInstance().reset();
-        prefEditor.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-        prefEditor.putInt("foodAdded", 0);
-        prefEditor.putInt("foodRemain", Calories.getInstance().calcRemain());
-        prefEditor.commit();
+        prefEditor1.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
+        prefEditor1.putInt("foodAdded", 0);
+        prefEditor1.putInt("foodRemain", Calories.getInstance().calcRemain());
+        prefEditor1.commit();
         print();
     }
 
     public void print(){
-        a = pref.getInt("foodAdded", 0);
+        a = pref1.getInt("foodAdded", 0);
         Calories.getInstance().setAddedCalo(a);
 
         caloGoal.setText(String.valueOf(/*pref.getInt("foodGoal",*/ Calories.getInstance().maxCalo()));
-        caloAdded.setText(String.valueOf(pref.getInt("foodAdded", 0)));
+        caloAdded.setText(String.valueOf(pref1.getInt("foodAdded", 0)));
         caloRemain.setText(String.valueOf(/*pref.getInt("foodRemain",*/ Calories.getInstance().calcRemain()));
     }
 

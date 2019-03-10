@@ -35,7 +35,7 @@ public class FoodInfo extends AppCompatActivity {
         setContentView(R.layout.activity_food_info);
         this.setTitle(R.string.food_info_title);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.PREF1, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         Bundle b = getIntent().getExtras();
