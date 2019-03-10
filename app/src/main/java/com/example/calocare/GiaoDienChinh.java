@@ -6,11 +6,20 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextClock;
 import android.widget.TextView;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+
+
+
+
 
 import java.util.Calendar;
 
@@ -29,6 +38,7 @@ public class GiaoDienChinh extends AppCompatActivity {
     private TextView caloGoal;
     private TextView caloAdded;
     private TextView caloRemain;
+    private String formatdate;
 
     private UserInfo user = UserInfo.getInstance();
     private int foodAdded;
@@ -36,6 +46,7 @@ public class GiaoDienChinh extends AppCompatActivity {
     private static final int code1 = 1;
     private static final int code2 = 2;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
@@ -69,20 +80,19 @@ public class GiaoDienChinh extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        print();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         if (Integer.parseInt(caloGoal.getText().toString()) != 0) {
-            prefEditor.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-            prefEditor.putInt("foodAdded", Integer.parseInt(caloAdded.getText().toString()));
-            prefEditor.putInt("foodRemain", Integer.parseInt(caloRemain.getText().toString()));
-            prefEditor.commit();
+            prefEditor1.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
+            prefEditor1.putInt("foodAdded", Integer.parseInt(caloAdded.getText().toString()));
+            prefEditor1.putInt("foodRemain", Integer.parseInt(caloRemain.getText().toString()));
+            prefEditor1.commit();
         }
     }
-
+    
     public void addFood(View v) {
         Intent nextActivity = new Intent(this, FoodChoice.class);
         startActivity(nextActivity);
@@ -94,10 +104,10 @@ public class GiaoDienChinh extends AppCompatActivity {
 
     public void toReset(View v) {
         Calories.getInstance().reset();
-        prefEditor.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-        prefEditor.putInt("foodAdded", 0);
-        prefEditor.putInt("foodRemain", Calories.getInstance().calcRemain());
-        prefEditor.commit();
+        prefEditor1.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
+        prefEditor1.putInt("foodAdded", 0);
+        prefEditor1.putInt("foodRemain", Calories.getInstance().calcRemain());
+        prefEditor1.commit();
         print();
     }
 

@@ -39,7 +39,7 @@ public class InputFilterMinMax implements InputFilter {
                 v.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
                 TextView text = v.findViewById(android.R.id.message);
-                text.setTextColor(Color.WHITE);
+                text.setTextColor(Color.RED);
 
                 newToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 

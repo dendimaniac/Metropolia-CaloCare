@@ -18,7 +18,6 @@ import NonActivityClasses.AppControl;
 import NonActivityClasses.Calories;
 import NonActivityClasses.Food;
 import NonActivityClasses.FoodList;
-import NonActivityClasses.UserInfo;
 
 public class FoodInfo extends AppCompatActivity {
     private SharedPreferences pref;
@@ -35,7 +34,7 @@ public class FoodInfo extends AppCompatActivity {
         setContentView(R.layout.activity_food_info);
         this.setTitle(R.string.food_info_title);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.PREF1, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         Bundle b = getIntent().getExtras();
@@ -61,7 +60,7 @@ public class FoodInfo extends AppCompatActivity {
                 //Code is here;
                 numOfServ = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
                 selectedFood.setNumOfServ(numOfServ);
-                updateInfo();
+                updateFoodAdded();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -80,10 +79,10 @@ public class FoodInfo extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
-    private void updateInfo() {
+    private void updateFoodAdded() {
         ((TextView)findViewById(R.id.tv_foodName)).setText(selectedFood.toString());
         ((TextView)findViewById(R.id.tv_servSize)).setText(selectedFood.getServingSize());
-        ((TextView)findViewById(R.id.tv_calories)).setText(selectedFood.getCalories() * numOfServ + " Cal");
+        ((TextView)findViewById(R.id.tv_calories)).setText(selectedFood.getCalories() * numOfServ + " kcal");
         ((TextView)findViewById(R.id.tv_carbs)).setText(selectedFood.getCarbs() * numOfServ + nutriUnit);
         ((TextView)findViewById(R.id.tv_protein)).setText(selectedFood.getProtein() * numOfServ + nutriUnit);
         ((TextView)findViewById(R.id.tv_fat)).setText(selectedFood.getFat() * numOfServ + nutriUnit);
