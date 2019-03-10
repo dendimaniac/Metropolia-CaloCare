@@ -17,41 +17,29 @@ public class UserInfo {
     public void setGender(String newGender){
         gender = newGender;
     }
+
     public void setAge(int newAge){
         age = newAge;
     }
+
     public void setHeight(int newHeight){
         height = newHeight;
     }
+
     public void setWeight(int newWeight){
         weight = newWeight;
     }
+
     public void setActiveStatus(double newActiveStatus){
         activeStatus = newActiveStatus;
     }
-    public void setGoalStatus( int newGoalStatus){
-        goalStatus = (newGoalStatus);
 
-    }
+    public void setGoalStatus(int newGoalStatus){ goalStatus = (newGoalStatus); }
 
     public String getName(){
         return gender;
     }
-    public String getGender(){
-        return gender;
-    }
-    public int getAge(){
-        return age;
-    }
-    public int getHeight(){
-        return height;
-    }
-    public int getWeight(){
-        return weight;
-    }
-    public double getActiveStatus(){
-        return activeStatus;
-    }
+
     public int getGoalStatus(){
         return (goalStatus);
     }

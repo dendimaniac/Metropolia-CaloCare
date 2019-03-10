@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.example.calocare.GiaoDienChinh;
-import com.example.calocare.R;
 
 public class AlarmReceiver extends BroadcastReceiver {
     private SharedPreferences pref;
@@ -21,14 +20,14 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        pref = context.getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = context.getSharedPreferences(AppControl.FOOD_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         Bundle b = intent.getExtras();
         boolean isMidnight = b.getBoolean("isMidnight");
 
         if (isMidnight) {
-            resetFood(context);
+            resetFood();
         } else if (!isMidnight) {
             createNoti(context);
         }
@@ -65,7 +64,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         notificationManager.notify(0, builder.build());
     }
 
-    private void resetFood(Context context) {
+    private void resetFood() {
         prefEditor.putInt("foodAdded", 0);
         prefEditor.putInt("foodRemain", pref.getInt("foodGoal", 0) - 0);
         prefEditor.commit();

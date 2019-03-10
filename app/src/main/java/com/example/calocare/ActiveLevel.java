@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
-import NonActivityClasses.UserInfo;
 
 public class ActiveLevel extends AppCompatActivity {
     private RadioButton r_button1;
@@ -37,7 +36,7 @@ public class ActiveLevel extends AppCompatActivity {
         r_button2.setOnCheckedChangeListener(mListener);
         r_button3.setOnCheckedChangeListener(mListener);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
         level = findViewById(R.id.level);
     }
@@ -45,7 +44,7 @@ public class ActiveLevel extends AppCompatActivity {
     CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                button4.setEnabled(true);
+            button4.setEnabled(true);
         }
     };
 
@@ -72,21 +71,21 @@ public class ActiveLevel extends AppCompatActivity {
         super.onPause();
 
         int selectedId = level.getCheckedRadioButtonId();
-        double a = 0.0;
+        double activeLevel = 0.0;
 
         if (selectedId != -1) {
             if (selectedId == R.id.notactive) {
-                a = 1.2;
+                activeLevel = 1.2;
             }
             else if (selectedId == R.id.slightlyactive) {
-                a = 1.55;
+                activeLevel = 1.55;
             }
             else if (selectedId == R.id.active) {
-                a = 1.9;
+                activeLevel = 1.9;
             }
         }
         prefEditor.putInt("userActive", selectedId);
-        prefEditor.putFloat("userActiveVal", (float) a);
+        prefEditor.putFloat("userActiveVal", (float) activeLevel);
         prefEditor.commit();
     }
 }

@@ -34,16 +34,14 @@ public class FoodInfo extends AppCompatActivity {
         setContentView(R.layout.activity_food_info);
         this.setTitle(R.string.food_info_title);
 
-        pref = getSharedPreferences(AppControl.PREF1, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.FOOD_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         Bundle b = getIntent().getExtras();
         int index = b.getInt("foodIndex", 0);
         selectedFood = FoodList.getInstance().getFood(index);
 
-        //Lấy đối tượng Spinner ra
         spin = findViewById(R.id.numOfServ);
-        //Gán Data source (arr) vào Adapter
         List<String> list = new ArrayList<>();
         for (int x = 1; x <= 100; x++) {
             list.add(String.valueOf(x));
@@ -52,20 +50,15 @@ public class FoodInfo extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
 
-
-        // Optional: Sau khi click xong thi lam gi tiep theo?  SaveReferrence or whatever
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //Code is here;
                 numOfServ = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
                 selectedFood.setNumOfServ(numOfServ);
                 updateFoodAdded();
             }
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                //Code is here
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) { }
         });
     }
 

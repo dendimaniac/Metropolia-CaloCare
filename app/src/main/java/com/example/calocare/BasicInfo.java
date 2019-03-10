@@ -3,7 +3,6 @@ package com.example.calocare;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,7 +10,6 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +18,6 @@ import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
 import NonActivityClasses.InputFilterMinMax;
-import NonActivityClasses.UserInfo;
 
 public class BasicInfo extends AppCompatActivity {
     private SharedPreferences pref;
@@ -37,7 +34,7 @@ public class BasicInfo extends AppCompatActivity {
         setContentView(R.layout.basic_info);
         this.setTitle(R.string.basic_info_title);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         nameTxt = findViewById(R.id.name);
@@ -48,7 +45,7 @@ public class BasicInfo extends AppCompatActivity {
 
         nameTxt.addTextChangedListener(watcher);
         ageTxt.addTextChangedListener(watcher);
-        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "150", this) });
+        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 150, this) });
 
         ageTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 

@@ -6,20 +6,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextClock;
 import android.widget.TextView;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-
-
-
-
 
 import java.util.Calendar;
 
@@ -29,8 +19,8 @@ import NonActivityClasses.Calories;
 import NonActivityClasses.UserInfo;
 
 public class GiaoDienChinh extends AppCompatActivity {
-    private SharedPreferences pref;
-    private SharedPreferences.Editor prefEditor;
+    private SharedPreferences userPref, foodPref;
+    private SharedPreferences.Editor userPrefEditor, foodPrefEditor;
 
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
@@ -38,28 +28,27 @@ public class GiaoDienChinh extends AppCompatActivity {
     private TextView caloGoal;
     private TextView caloAdded;
     private TextView caloRemain;
-    private String formatdate;
 
     private UserInfo user = UserInfo.getInstance();
-    private int foodAdded;
 
     private static final int code1 = 1;
     private static final int code2 = 2;
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_giao_dien_chinh);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
-        prefEditor = pref.edit();
+        userPref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
+        foodPref = getSharedPreferences(AppControl.FOOD_PREF, Activity.MODE_PRIVATE);
+        userPrefEditor = userPref.edit();
+        foodPrefEditor = foodPref.edit();
 
         caloGoal = findViewById(R.id.tv_goal);
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
 
-        if(pref.getInt("userGoalVal", 0) == 0) {
+        if(userPref.getInt("userGoalVal", 0) == 0) {
             toBasicInfo();
         } else {
             boolean alarmUp1 = (PendingIntent.getBroadcast(this, code1,
@@ -68,12 +57,12 @@ public class GiaoDienChinh extends AppCompatActivity {
             boolean alarmUp2 = (PendingIntent.getBroadcast(this, code2,
                     new Intent(this, AlarmReceiver.class),
                     PendingIntent.FLAG_NO_CREATE) != null);
-            Log.d("myTag", alarmUp1 + " + " + alarmUp2);
             if (!(alarmUp1 || alarmUp2)) {
                 setAlarm(true);
                 setAlarm(false);
             }
             setUserValue();
+            print();
         }
     }
 
@@ -86,10 +75,10 @@ public class GiaoDienChinh extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         if (Integer.parseInt(caloGoal.getText().toString()) != 0) {
-            prefEditor1.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-            prefEditor1.putInt("foodAdded", Integer.parseInt(caloAdded.getText().toString()));
-            prefEditor1.putInt("foodRemain", Integer.parseInt(caloRemain.getText().toString()));
-            prefEditor1.commit();
+            foodPrefEditor.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
+            foodPrefEditor.putInt("foodAdded", Integer.parseInt(caloAdded.getText().toString()));
+            foodPrefEditor.putInt("foodRemain", Integer.parseInt(caloRemain.getText().toString()));
+            foodPrefEditor.commit();
         }
     }
     
@@ -102,17 +91,8 @@ public class GiaoDienChinh extends AppCompatActivity {
         toBasicInfo();
     }
 
-    public void toReset(View v) {
-        Calories.getInstance().reset();
-        prefEditor1.putInt("foodGoal", Integer.parseInt(caloGoal.getText().toString()));
-        prefEditor1.putInt("foodAdded", 0);
-        prefEditor1.putInt("foodRemain", Calories.getInstance().calcRemain());
-        prefEditor1.commit();
-        print();
-    }
-
     public void print(){
-        foodAdded = pref.getInt("foodAdded", 0);
+        int foodAdded = foodPref.getInt("foodAdded", 0);
         Calories.getInstance().setAddedCalo(foodAdded);
 
         caloGoal.setText(String.valueOf(Calories.getInstance().maxCalo()));
@@ -121,12 +101,12 @@ public class GiaoDienChinh extends AppCompatActivity {
     }
 
     private void setUserValue() {
-        user.setAge(pref.getInt("userAge", 0));
-        user.setGender(pref.getString("userGenderText", ""));
-        user.setHeight(pref.getInt("userHeight", 0));
-        user.setWeight(pref.getInt("userWeight", 0));
-        user.setActiveStatus(pref.getFloat("userActiveVal", 0));
-        user.setGoalStatus(pref.getInt("userGoalVal", 0));
+        user.setAge(userPref.getInt("userAge", 0));
+        user.setGender(userPref.getString("userGenderText", ""));
+        user.setHeight(userPref.getInt("userHeight", 0));
+        user.setWeight(userPref.getInt("userWeight", 0));
+        user.setActiveStatus(userPref.getFloat("userActiveVal", 0));
+        user.setGoalStatus(userPref.getInt("userGoalVal", 0));
     }
 
     private void toBasicInfo() {

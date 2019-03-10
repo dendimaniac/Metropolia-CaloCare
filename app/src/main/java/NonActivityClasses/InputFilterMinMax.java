@@ -20,12 +20,6 @@ public class InputFilterMinMax implements InputFilter {
         this.context = newContext;
     }
 
-    public InputFilterMinMax(String min, String max, Context newContext) {
-        this.min = Integer.parseInt(min);
-        this.max = Integer.parseInt(max);
-        this.context = newContext;
-    }
-
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
         try {
@@ -39,7 +33,7 @@ public class InputFilterMinMax implements InputFilter {
                 v.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
                 TextView text = v.findViewById(android.R.id.message);
-                text.setTextColor(Color.RED);
+                text.setTextColor(Color.WHITE);
 
                 newToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -13,7 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
-import NonActivityClasses.UserInfo;
 
 public class Goal extends AppCompatActivity {
     private RadioButton rb1;
@@ -40,7 +38,7 @@ public class Goal extends AppCompatActivity {
         rb2.setOnCheckedChangeListener(nListener);
         rb3.setOnCheckedChangeListener(nListener);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
         goal = findViewById(R.id.goal);
 
@@ -78,21 +76,21 @@ public class Goal extends AppCompatActivity {
         super.onPause();
 
         int selectedId = goal.getCheckedRadioButtonId();
-        int a = 0;
+        int goal = 0;
 
         if (selectedId != -1) {
             if (selectedId == R.id.lose) {
-                a = 1;
+                goal = 1;
             }
             if (selectedId == R.id.maintain) {
-                a = 2;
+                goal = 2;
             }
             if (selectedId == R.id.gain) {
-                a = 3;
+                goal = 3;
             }
         }
         prefEditor.putInt("userGoal", selectedId);
-        prefEditor.putInt("userGoalVal", a);
+        prefEditor.putInt("userGoalVal", goal);
         prefEditor.commit();
     }
 

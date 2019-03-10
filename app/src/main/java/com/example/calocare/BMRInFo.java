@@ -16,7 +16,6 @@ import android.widget.EditText;
 
 import NonActivityClasses.AppControl;
 import NonActivityClasses.InputFilterMinMax;
-import NonActivityClasses.UserInfo;
 
 public class BMRInFo extends AppCompatActivity {
     private EditText heightTxt;
@@ -32,7 +31,7 @@ public class BMRInFo extends AppCompatActivity {
         setContentView(R.layout.activity_bmr_info);
         this.setTitle(R.string.bmr_info_title);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         heightTxt = findViewById(R.id.txt_height);
@@ -42,8 +41,8 @@ public class BMRInFo extends AppCompatActivity {
         heightTxt.addTextChangedListener(watcher);
         weightTxt.addTextChangedListener(watcher);
 
-        heightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "300", this) });
-        weightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax("1", "250", this) });
+        heightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 300, this) });
+        weightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 250, this) });
 
         heightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
         weightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
