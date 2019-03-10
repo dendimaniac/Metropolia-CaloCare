@@ -18,7 +18,6 @@ import NonActivityClasses.AppControl;
 import NonActivityClasses.Calories;
 import NonActivityClasses.Food;
 import NonActivityClasses.FoodList;
-import NonActivityClasses.UserInfo;
 
 public class FoodInfo extends AppCompatActivity {
     private SharedPreferences pref;
@@ -61,7 +60,7 @@ public class FoodInfo extends AppCompatActivity {
                 //Code is here;
                 numOfServ = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
                 selectedFood.setNumOfServ(numOfServ);
-                updateInfo();
+                updateFoodAdded();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -80,7 +79,7 @@ public class FoodInfo extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
-    private void updateInfo() {
+    private void updateFoodAdded() {
         ((TextView)findViewById(R.id.tv_foodName)).setText(selectedFood.toString());
         ((TextView)findViewById(R.id.tv_servSize)).setText(selectedFood.getServingSize());
         ((TextView)findViewById(R.id.tv_calories)).setText(selectedFood.getCalories() * numOfServ + " kcal");

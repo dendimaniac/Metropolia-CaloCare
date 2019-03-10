@@ -19,7 +19,7 @@ import NonActivityClasses.InputFilterMinMax;
 import NonActivityClasses.UserInfo;
 
 public class BMRInFo extends AppCompatActivity {
-    private static final String PREF = "data";
+    //private static final String PREF = "data";
 
     private EditText heightTxt;
     private EditText weightTxt;
