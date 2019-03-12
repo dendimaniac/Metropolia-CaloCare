@@ -50,13 +50,13 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId("com.example.calocare");
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
             NotificationChannel channel = new NotificationChannel(
                     "com.example.calocare",
                     "CaloCare",
                     NotificationManager.IMPORTANCE_DEFAULT
             );
+
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
             }

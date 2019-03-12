@@ -114,7 +114,7 @@ public class GiaoDienChinh extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
-    public void setAlarm(boolean isMidnight) {
+    public void setAlarm(boolean isMidnight ) {
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("isMidnight", isMidnight);
         alarmIntent = PendingIntent.getBroadcast(this, isMidnight ? code1 : code2, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -129,5 +129,7 @@ public class GiaoDienChinh extends AppCompatActivity {
 
         alarmMgr = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
         alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+
+
     }
 }

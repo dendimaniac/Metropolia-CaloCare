@@ -33,7 +33,7 @@ public class InputFilterMinMax implements InputFilter {
                 v.getBackground().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
 
                 TextView text = v.findViewById(android.R.id.message);
-                text.setTextColor(Color.WHITE);
+                text.setTextColor(Color.RED);
 
                 newToast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 
@@ -44,6 +44,7 @@ public class InputFilterMinMax implements InputFilter {
     }
 
     private boolean isInRange(int a, int b, int c) {
-        return b > a ? c >= a && c <= b : c >= b && c <= a;
+        return (b > a) ? (c >= a && c <= b) : (c >= b && c <= a);
     }
+
 }
