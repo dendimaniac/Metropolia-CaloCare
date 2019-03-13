@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calocare">
 
+    <!--https://stackoverflow.com/questions/4459058/alarm-manager-example?noredirect=1&lq=1-->
     <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
     <application
         android:allowBackup="true"

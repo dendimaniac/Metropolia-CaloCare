@@ -56,6 +56,7 @@ public class GiaoDienChinh extends AppCompatActivity {
         else {
             //If there are PendingIntents that match code, context, and intent, return null, otherwise return the pending intent
             //then check if the return is not equal to null
+            //https://stackoverflow.com/questions/4556670/how-to-check-if-alarmmanager-already-has-an-alarm-set/9575569#9575569
             boolean alarmUp1 = (PendingIntent.getBroadcast(this, code1,
                     new Intent(this, AlarmReceiver.class),
                     PendingIntent.FLAG_NO_CREATE) != null);
@@ -121,6 +122,8 @@ public class GiaoDienChinh extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
+    //https://developer.android.com/training/scheduling/alarms.html
+    //https://developer.android.com/reference/kotlin/android/app/PendingIntent?hl=en
     public void setAlarm( boolean isMidnight ) {
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("isMidnight", isMidnight);

@@ -7,16 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
 
 public class ActiveLevel extends AppCompatActivity {
-    private RadioButton r_button1;
-    private RadioButton r_button2;
-    private RadioButton r_button3;
     private Button button4;
     private RadioGroup level;
     private SharedPreferences pref;
@@ -27,34 +22,30 @@ public class ActiveLevel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_level);
 
-        r_button1 = findViewById(R.id.notactive);
-        r_button2 = findViewById(R.id.slightlyactive);
-        r_button3 = findViewById(R.id.active);
         button4 = findViewById(R.id.button4);
-
-        // set listener when clicking button
-        r_button1.setOnCheckedChangeListener(mListener);
-        r_button2.setOnCheckedChangeListener(mListener);
-        r_button3.setOnCheckedChangeListener(mListener);
 
         pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
         level = findViewById(R.id.level);
+
+        //https://stackoverflow.com/questions/39715867/android-how-to-enable-a-button-if-a-radio-button-is-checked
+        //https://developer.android.com/reference/android/widget/RadioGroup.OnCheckedChangeListener (where is -1 coming from
+        level.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                //If something is checked, change onChecked
+                if (checkedId != -1) {
+                    button4.setEnabled(true);
+                }
+            }
+        });
     }
-  
-    CompoundButton.OnCheckedChangeListener mListener = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            button4.setEnabled(true);
-        }
-    };
 
 
     public void nextActivity(View v) {
         Intent nextActivity = new Intent(this, Goal.class);
         startActivity(nextActivity);
     }
-
 
     @Override
     protected void onResume() {
