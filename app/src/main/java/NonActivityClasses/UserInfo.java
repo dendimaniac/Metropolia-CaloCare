@@ -37,7 +37,7 @@ public class UserInfo {
     public void setGoalStatus(int newGoalStatus){ goalStatus = (newGoalStatus); }
 
     public String getName(){
-        return gender;
+        return name;
     }
 
     public int getGoalStatus(){
