@@ -41,6 +41,8 @@ public class BMRInFo extends AppCompatActivity {
         heightTxt.addTextChangedListener(watcher);
         weightTxt.addTextChangedListener(watcher);
 
+
+        // Set min, max input value for weight and height
         heightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 300, this) });
         weightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 250, this) });
 

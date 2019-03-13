@@ -32,9 +32,13 @@ public class ActiveLevel extends AppCompatActivity {
         r_button3 = findViewById(R.id.active);
         button4 = findViewById(R.id.button4);
 
+
+        // set listener when clicking button
         r_button1.setOnCheckedChangeListener(mListener);
         r_button2.setOnCheckedChangeListener(mListener);
         r_button3.setOnCheckedChangeListener(mListener);
+
+
 
         pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
@@ -48,6 +52,7 @@ public class ActiveLevel extends AppCompatActivity {
         }
     };
 
+
     public void nextActivity(View v) {
         Intent nextActivity = new Intent(this, Goal.class);
         startActivity(nextActivity);
@@ -59,6 +64,7 @@ public class ActiveLevel extends AppCompatActivity {
         super.onResume();
         int checkId = pref.getInt("userActive", -1);
 
+        // Avoid next button is enable while no radio button is checked
         if (checkId == -1) {
             level.clearCheck();
         } else {
@@ -73,6 +79,7 @@ public class ActiveLevel extends AppCompatActivity {
         int selectedId = level.getCheckedRadioButtonId();
         double activeLevel = 0.0;
 
+        // Set value which is used to calculate Maximum Calories consumed when radio button is selected
         if (selectedId != -1) {
             if (selectedId == R.id.notactive) {
                 activeLevel = 1.2;

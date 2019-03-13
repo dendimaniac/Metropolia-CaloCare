@@ -29,6 +29,7 @@ public class GiaoDienChinh extends AppCompatActivity {
     private TextView caloAdded;
     private TextView caloRemain;
 
+
     private UserInfo user = UserInfo.getInstance();
 
     private static final int code1 = 1;
@@ -48,15 +49,18 @@ public class GiaoDienChinh extends AppCompatActivity {
         caloAdded = findViewById(R.id.tv_food);
         caloRemain = findViewById(R.id.tv_remain);
 
+
         if(userPref.getInt("userGoalVal", 0) == 0) {
             toBasicInfo();
-        } else {
+        }
+        else {
             boolean alarmUp1 = (PendingIntent.getBroadcast(this, code1,
                     new Intent(this, AlarmReceiver.class),
                     PendingIntent.FLAG_NO_CREATE) != null);
             boolean alarmUp2 = (PendingIntent.getBroadcast(this, code2,
                     new Intent(this, AlarmReceiver.class),
                     PendingIntent.FLAG_NO_CREATE) != null);
+            //Check whether alarm is existed or not
             if (!(alarmUp1 || alarmUp2)) {
                 setAlarm(true);
                 setAlarm(false);
@@ -120,6 +124,7 @@ public class GiaoDienChinh extends AppCompatActivity {
         alarmIntent = PendingIntent.getBroadcast(this, isMidnight ? code1 : code2, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar calendar = Calendar.getInstance();
+        //Set specific time for alarm
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.add(Calendar.DATE, isMidnight ? 1 : 0);
         calendar.set(Calendar.HOUR_OF_DAY, isMidnight ? 0 : 22);

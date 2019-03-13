@@ -34,6 +34,7 @@ public class Goal extends AppCompatActivity {
         rb3 = findViewById(R.id.gain);
         next = findViewById(R.id.next);
 
+        // set listener when clicking button
         rb1.setOnCheckedChangeListener(nListener);
         rb2.setOnCheckedChangeListener(nListener);
         rb3.setOnCheckedChangeListener(nListener);
@@ -63,6 +64,7 @@ public class Goal extends AppCompatActivity {
         super.onResume();
         int checkId = pref.getInt("userGoal", -1);
 
+        // Avoid next button is enable while no radio button is checked
         if (checkId == -1) {
             goal.clearCheck();
         } else {

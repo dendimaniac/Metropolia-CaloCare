@@ -45,8 +45,9 @@ public class BasicInfo extends AppCompatActivity {
 
         nameTxt.addTextChangedListener(watcher);
         ageTxt.addTextChangedListener(watcher);
-        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 150, this) });
 
+        // set min, max input value for age
+        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 150, this) });
         ageTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -74,6 +75,7 @@ public class BasicInfo extends AppCompatActivity {
             ageTxt.setText("" + age);
         }
 
+        // Avoid next button is enable while no radio button is checked
         if (checkId == -1) {
             gender.clearCheck();
         } else {

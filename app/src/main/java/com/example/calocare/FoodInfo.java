@@ -41,12 +41,19 @@ public class FoodInfo extends AppCompatActivity {
         int index = b.getInt("foodIndex", 0);
         selectedFood = FoodList.getInstance().getFood(index);
 
+        // Take object spinner
         spin = findViewById(R.id.numOfServ);
+
+        // Create a data source for spinner
         List<String> list = new ArrayList<>();
         for (int x = 1; x <= 100; x++) {
             list.add(String.valueOf(x));
         }
+
+        // Assign data source to Adapter
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, list);
+
+        //Call to display list for spinner
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
 

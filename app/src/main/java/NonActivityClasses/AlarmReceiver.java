@@ -33,11 +33,15 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
+
+
     private void createNoti(Context context) {
+        //Set the notification's tap action
         Intent intent = new Intent(context, GiaoDienChinh.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
+        //Set notification content
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default")
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle("Insufficient")
@@ -47,7 +51,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
+        //Create a channel and set the importance
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId("com.example.calocare");
 
@@ -56,7 +60,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                     "CaloCare",
                     NotificationManager.IMPORTANCE_DEFAULT
             );
-
             if (notificationManager != null) {
                 notificationManager.createNotificationChannel(channel);
             }
