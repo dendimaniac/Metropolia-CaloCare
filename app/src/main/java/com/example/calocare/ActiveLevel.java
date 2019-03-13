@@ -32,13 +32,10 @@ public class ActiveLevel extends AppCompatActivity {
         r_button3 = findViewById(R.id.active);
         button4 = findViewById(R.id.button4);
 
-
         // set listener when clicking button
         r_button1.setOnCheckedChangeListener(mListener);
         r_button2.setOnCheckedChangeListener(mListener);
         r_button3.setOnCheckedChangeListener(mListener);
-
-
 
         pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
@@ -64,7 +61,7 @@ public class ActiveLevel extends AppCompatActivity {
         super.onResume();
         int checkId = pref.getInt("userActive", -1);
 
-        // Avoid next button is enable while no radio button is checked
+        // Avoid next button is enable while no radio button is checked since there is an onCheckedChangedListener
         if (checkId == -1) {
             level.clearCheck();
         } else {

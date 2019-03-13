@@ -79,6 +79,7 @@ public class FoodInfo extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
+    //Multiplied depending on number of servings
     private void updateFoodAdded() {
         ((TextView)findViewById(R.id.tv_foodName)).setText(selectedFood.toString());
         ((TextView)findViewById(R.id.tv_servSize)).setText(selectedFood.getServingSize());

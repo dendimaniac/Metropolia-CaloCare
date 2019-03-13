@@ -2,6 +2,7 @@ package NonActivityClasses;
 
 import android.widget.EditText;
 
+//This class is for storing Prefs and global functions
 public class AppControl {
 
     public static final String USER_PREF = "userData";

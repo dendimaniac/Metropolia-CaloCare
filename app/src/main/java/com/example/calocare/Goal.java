@@ -46,6 +46,7 @@ public class Goal extends AppCompatActivity {
     }
 
     CompoundButton.OnCheckedChangeListener nListener = new CompoundButton.OnCheckedChangeListener() {
+        //If something is checked, change onChecked
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 next.setEnabled(true);
@@ -64,7 +65,7 @@ public class Goal extends AppCompatActivity {
         super.onResume();
         int checkId = pref.getInt("userGoal", -1);
 
-        // Avoid next button is enable while no radio button is checked
+        // Avoid next button is enable while no radio button is checked since there is an onCheckedChangedListener
         if (checkId == -1) {
             goal.clearCheck();
         } else {

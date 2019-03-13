@@ -53,6 +53,7 @@ public class BasicInfo extends AppCompatActivity {
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                //If something is checked, change onChecked
                 if (checkedId != -1) {
                     onChecked = true;
                 }
@@ -69,13 +70,14 @@ public class BasicInfo extends AppCompatActivity {
 
         nameTxt.setText(pref.getString("userName", ""));
 
+        //If no saved key, instead of showing 0, show empty
         if (age <= 0) {
             ageTxt.setText("");
         } else {
             ageTxt.setText("" + age);
         }
 
-        // Avoid next button is enable while no radio button is checked
+        // Avoid next button is enable while no radio button is checked since there is an onCheckedChangedListener
         if (checkId == -1) {
             gender.clearCheck();
         } else {
@@ -106,6 +108,8 @@ public class BasicInfo extends AppCompatActivity {
         prefEditor.commit();
     }
 
+    //In order to only allow the user to use numbers only, input type number password is needed
+    //So we need to convert the * back to what the user types.
     private class NumericKeyBoardTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
@@ -118,6 +122,7 @@ public class BasicInfo extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+        //Whenever text is changed, check if all is filled
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             validateNext();
@@ -137,6 +142,7 @@ public class BasicInfo extends AppCompatActivity {
     }
 
     private boolean hasFilled() {
+        //If neither the text fields are empty and onChecked is true, enable the next button;
         return !TextUtils.isEmpty(AppControl.getText(nameTxt))
                 && !TextUtils.isEmpty(AppControl.getText(ageTxt))
                 && onChecked != false;

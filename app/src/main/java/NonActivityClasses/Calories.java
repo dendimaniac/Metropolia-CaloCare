@@ -38,8 +38,4 @@ public class Calories {
     public void setAddedCalo(int newAddedCalo) {
         addedCalo = newAddedCalo;
     }
-
-    public void reset(){
-        addedCalo = 0;
-    }
 }

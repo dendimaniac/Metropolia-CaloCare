@@ -33,15 +33,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
-
-
     private void createNoti(Context context) {
         //Set the notification's tap action
         Intent intent = new Intent(context, GiaoDienChinh.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-        //Set notification content
+        //Set notification title, content, defaults, and tapping noti action
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default")
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle("Insufficient")
@@ -64,6 +62,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 notificationManager.createNotificationChannel(channel);
             }
         }
+        //Show the notification
         notificationManager.notify(0, builder.build());
     }
 

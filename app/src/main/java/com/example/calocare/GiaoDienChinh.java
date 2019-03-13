@@ -54,6 +54,8 @@ public class GiaoDienChinh extends AppCompatActivity {
             toBasicInfo();
         }
         else {
+            //If there are PendingIntents that match code, context, and intent, return null, otherwise return the pending intent
+            //then check if the return is not equal to null
             boolean alarmUp1 = (PendingIntent.getBroadcast(this, code1,
                     new Intent(this, AlarmReceiver.class),
                     PendingIntent.FLAG_NO_CREATE) != null);
@@ -62,8 +64,8 @@ public class GiaoDienChinh extends AppCompatActivity {
                     PendingIntent.FLAG_NO_CREATE) != null);
             //Check whether alarm is existed or not
             if (!(alarmUp1 || alarmUp2)) {
-                setAlarm(true);
-                setAlarm(false);
+                setAlarm(true);     //Set the alarm for midnight reset
+                setAlarm(false);    //Set the alarm for 10p.m. notification
             }
             setUserValue();
             print();
@@ -105,6 +107,7 @@ public class GiaoDienChinh extends AppCompatActivity {
     }
 
     private void setUserValue() {
+        //Everytime opeing the app, set all the userinfo to run functions.
         user.setAge(userPref.getInt("userAge", 0));
         user.setGender(userPref.getString("userGenderText", ""));
         user.setHeight(userPref.getInt("userHeight", 0));
@@ -118,15 +121,15 @@ public class GiaoDienChinh extends AppCompatActivity {
         startActivity(nextActivity);
     }
 
-    public void setAlarm(boolean isMidnight ) {
+    public void setAlarm( boolean isMidnight ) {
         Intent intent = new Intent(this, AlarmReceiver.class);
         intent.putExtra("isMidnight", isMidnight);
-        alarmIntent = PendingIntent.getBroadcast(this, isMidnight ? code1 : code2, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmIntent = PendingIntent.getBroadcast(this, isMidnight ? code1 : code2, intent, PendingIntent.FLAG_UPDATE_CURRENT);  //Need to use separate code because if the same code, it replaces the old PendingIntent
 
         Calendar calendar = Calendar.getInstance();
         //Set specific time for alarm
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.add(Calendar.DATE, isMidnight ? 1 : 0);
+        calendar.add(Calendar.DATE, isMidnight ? 1 : 0);    //since 12a.m. is for the next day, we need to add 1 to the date, but none for 10p.m.
         calendar.set(Calendar.HOUR_OF_DAY, isMidnight ? 0 : 22);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);

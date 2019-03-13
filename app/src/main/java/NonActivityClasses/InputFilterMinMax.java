@@ -28,6 +28,7 @@ public class InputFilterMinMax implements InputFilter {
             if (isInRange(min, max, input))
                 return null;
             else if (!isInRange(min, max, input)) {
+                //Create a toast message, black backround, white text, and center of screen.
                 Toast newToast = Toast.makeText(context, "Invalid, limit: " + min + " - " + max, Toast.LENGTH_SHORT);
                 View v = newToast.getView();
 
@@ -42,12 +43,13 @@ public class InputFilterMinMax implements InputFilter {
             }
         }
         //If an exception occurs at the particular statement of try block, the rest of the block code will not execute
+        //NumberFormatException is when the input is not a number
         catch (NumberFormatException nfe) { }
         return "";
     }
 
     private boolean isInRange(int a, int b, int c) {
-        return (b > a) ? (c >= a && c <= b) : (c >= b );
+        return (b > a) ? (c >= a && c <= b) : (c >= b);
     }
 
 }
