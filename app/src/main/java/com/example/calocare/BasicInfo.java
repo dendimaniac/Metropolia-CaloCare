@@ -3,14 +3,13 @@ package com.example.calocare;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,11 +17,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
-import NonActivityClasses.UserInfo;
+import NonActivityClasses.InputFilterMinMax;
 
 public class BasicInfo extends AppCompatActivity {
-    private static final String PREF = "data";
-
     private SharedPreferences pref;
     private SharedPreferences.Editor prefEditor;
 
@@ -37,7 +34,7 @@ public class BasicInfo extends AppCompatActivity {
         setContentView(R.layout.basic_info);
         this.setTitle(R.string.basic_info_title);
 
-        pref = getSharedPreferences(AppControl.PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         nameTxt = findViewById(R.id.name);
@@ -49,11 +46,14 @@ public class BasicInfo extends AppCompatActivity {
         nameTxt.addTextChangedListener(watcher);
         ageTxt.addTextChangedListener(watcher);
 
+        // set min, max input value for age
+        ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 150, this) });
         ageTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                //If something is checked, change onChecked
                 if (checkedId != -1) {
                     onChecked = true;
                 }
@@ -70,12 +70,14 @@ public class BasicInfo extends AppCompatActivity {
 
         nameTxt.setText(pref.getString("userName", ""));
 
+        //If no saved key, instead of showing 0, show empty
         if (age <= 0) {
             ageTxt.setText("");
         } else {
             ageTxt.setText("" + age);
         }
 
+        // Avoid next button is enable while no radio button is checked since there is an onCheckedChangedListener
         if (checkId == -1) {
             gender.clearCheck();
         } else {
@@ -91,22 +93,23 @@ public class BasicInfo extends AppCompatActivity {
         int defaultAge = 0;
 
         if (!TextUtils.isEmpty(AppControl.getText(nameTxt))) {
-            UserInfo.getInstance().setName(AppControl.getText(nameTxt));
+            prefEditor.putString("userName", AppControl.getText(nameTxt));
         }
         if (!TextUtils.isEmpty(AppControl.getText(ageTxt))) {
             defaultAge = Integer.parseInt(AppControl.getText(ageTxt));
-            UserInfo.getInstance().setAge(defaultAge);
+            prefEditor.putInt("userAge", defaultAge);
         }
         if (selectedId != -1) {
             RadioButton selectedGender = findViewById(selectedId);
-            UserInfo.getInstance().setGender(selectedGender.getText().toString());
+
+            prefEditor.putString("userGenderText", selectedGender.getText().toString());
         }
-        prefEditor.putString("userName", AppControl.getText(nameTxt));
-        prefEditor.putInt("userAge", defaultAge);
         prefEditor.putInt("userGender", selectedId);
         prefEditor.commit();
     }
 
+    //In order to only allow the user to use numbers only, input type number password is needed
+    //So we need to convert the * back to what the user types.
     private class NumericKeyBoardTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
@@ -119,6 +122,7 @@ public class BasicInfo extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+        //Whenever text is changed, check if all is filled
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             validateNext();
@@ -129,7 +133,7 @@ public class BasicInfo extends AppCompatActivity {
     };
 
     private void validateNext() {
-        nextBtn.setEnabled(hasFilled() ? true : false);
+        nextBtn.setEnabled(hasFilled());
     }
 
     public void nextActivity(View v) {
@@ -138,14 +142,9 @@ public class BasicInfo extends AppCompatActivity {
     }
 
     private boolean hasFilled() {
-        if (TextUtils.isEmpty(AppControl.getText(nameTxt))
-                || TextUtils.isEmpty(AppControl.getText(ageTxt))
-                || onChecked == false) {
-            return false;
-        } else {
-            return true;
-        }
+        //If neither the text fields are empty and onChecked is true, enable the next button;
+        return !TextUtils.isEmpty(AppControl.getText(nameTxt))
+                && !TextUtils.isEmpty(AppControl.getText(ageTxt))
+                && onChecked != false;
     }
-
-
 }

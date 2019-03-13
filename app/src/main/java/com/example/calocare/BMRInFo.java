@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
@@ -14,11 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import NonActivityClasses.AppControl;
-import NonActivityClasses.UserInfo;
+import NonActivityClasses.InputFilterMinMax;
 
 public class BMRInFo extends AppCompatActivity {
-    private static final String PREF = "data";
-
     private EditText heightTxt;
     private EditText weightTxt;
     private Button nextBtn;
@@ -32,7 +31,7 @@ public class BMRInFo extends AppCompatActivity {
         setContentView(R.layout.activity_bmr_info);
         this.setTitle(R.string.bmr_info_title);
 
-        pref = getSharedPreferences(PREF, Activity.MODE_PRIVATE);
+        pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
 
         heightTxt = findViewById(R.id.txt_height);
@@ -41,6 +40,10 @@ public class BMRInFo extends AppCompatActivity {
 
         heightTxt.addTextChangedListener(watcher);
         weightTxt.addTextChangedListener(watcher);
+
+        // Set min, max input value for weight and height
+        heightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 300, this) });
+        weightTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 250, this) });
 
         heightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
         weightTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
@@ -53,6 +56,7 @@ public class BMRInFo extends AppCompatActivity {
         int height = pref.getInt("userHeight", 0);
         int weight = pref.getInt("userWeight", 0);
 
+        //If no saved key, instead of showing 0, show empty
         if (height <= 0) {
             heightTxt.setText("");
         } else {
@@ -74,18 +78,17 @@ public class BMRInFo extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(AppControl.getText(heightTxt))) {
             defaultH = Integer.parseInt(AppControl.getText(heightTxt));
-            UserInfo.getInstance().setHeight(defaultH);
         }
         if (!TextUtils.isEmpty(AppControl.getText(weightTxt))) {
             defaultW = Integer.parseInt(AppControl.getText(weightTxt));
-            UserInfo.getInstance().setWeight(defaultW);
         }
-
         prefEditor.putInt("userHeight", defaultH);
         prefEditor.putInt("userWeight", defaultW);
         prefEditor.commit();
     }
 
+    //In order to only allow the user to use numbers only, input type number password is needed
+    //So we need to convert the * back to what the user types.
     private class NumericKeyBoardTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
@@ -98,6 +101,7 @@ public class BMRInFo extends AppCompatActivity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+        //Whenever text is changed, check if all is filled
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (TextUtils.isEmpty(heightTxt.getText().toString().trim())

@@ -1,17 +1,13 @@
 package NonActivityClasses;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.widget.EditText;
 
+//This class is for storing Prefs and global functions
 public class AppControl {
-    private static final AppControl appInstance = new AppControl();
 
-    public static final String PREF = "data";
+    public static final String USER_PREF = "userData";
 
-    public static AppControl getInstance() {
-        return appInstance;
-    }
+    public static final String FOOD_PREF = "foodData";
 
     public static String getText(EditText input) {
         return input.getText().toString().trim();

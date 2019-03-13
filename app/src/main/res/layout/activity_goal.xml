@@ -32,18 +32,18 @@
 
     <RadioGroup
         android:id="@+id/goal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/lose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#3f7628"
-            android:gravity="center"
             android:text="@string/txt_lose"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,11 +51,9 @@
             tools:layout_editor_absoluteY="245dp" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#3f7628"
-            android:gravity="center"
             android:text="@string/txt_maintain"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,11 +61,9 @@
             tools:layout_editor_absoluteY="428dp" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/gain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#3f7628"
-            android:gravity="center"
             android:text="@string/txt_gain"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"

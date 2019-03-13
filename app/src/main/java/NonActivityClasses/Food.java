@@ -1,13 +1,9 @@
 package NonActivityClasses;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Food {
     private String name;
     private int calories, carbs, protein, fat, fiber, cholesterol, calcium, numOfServ;
     private String servingSize;
-    private ArrayList<Integer> foodInfo;
 
     public Food(String name, int calories, int carbs, int protein, int fat, int fiber, int cholesterol, int calcium, String servingSize) {
         this.name = name;
@@ -21,9 +17,7 @@ public class Food {
         this.servingSize= servingSize;
     }
 
-    public int getCalories() {
-        return calories;
-    }
+    public int getCalories() { return calories; }
 
     public int getCarbs() {
         return carbs;
@@ -57,11 +51,6 @@ public class Food {
 
     public String getServingSize() {
         return this.servingSize;
-    }
-
-    public ArrayList<Integer> getFoodInfo() {
-        foodInfo.addAll(Arrays.asList(calories, carbs, protein, fat, fiber, cholesterol, calcium));
-        return foodInfo;
     }
 
     @Override
