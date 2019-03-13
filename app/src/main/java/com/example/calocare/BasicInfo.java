@@ -50,6 +50,8 @@ public class BasicInfo extends AppCompatActivity {
         ageTxt.setFilters(new InputFilter[]{ new InputFilterMinMax(1, 150, this) });
         ageTxt.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
+        //https://stackoverflow.com/questions/39715867/android-how-to-enable-a-button-if-a-radio-button-is-checked
+        //https://developer.android.com/reference/android/widget/RadioGroup.OnCheckedChangeListener (where is -1 coming from
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -117,6 +119,7 @@ public class BasicInfo extends AppCompatActivity {
         }
     }
 
+    //https://stackoverflow.com/questions/26196770/enable-button-once-all-edittext-fields-are-not-empty
     private final TextWatcher watcher = new TextWatcher() {
 
         @Override

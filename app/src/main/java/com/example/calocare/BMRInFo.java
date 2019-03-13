@@ -89,6 +89,7 @@ public class BMRInFo extends AppCompatActivity {
 
     //In order to only allow the user to use numbers only, input type number password is needed
     //So we need to convert the * back to what the user types.
+    //https://stackoverflow.com/questions/13817521/edittext-view-with-keyboard-number-only
     private class NumericKeyBoardTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
@@ -96,8 +97,8 @@ public class BMRInFo extends AppCompatActivity {
         }
     }
 
+    //https://stackoverflow.com/questions/26196770/enable-button-once-all-edittext-fields-are-not-empty
     private final TextWatcher watcher = new TextWatcher() {
-
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 

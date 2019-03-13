@@ -33,6 +33,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
     }
 
+    //https://stackoverflow.com/questions/52833540/push-notification-is-not-working-in-android-studio
     private void createNoti(Context context) {
         //Set the notification's tap action
         Intent intent = new Intent(context, GiaoDienChinh.class);

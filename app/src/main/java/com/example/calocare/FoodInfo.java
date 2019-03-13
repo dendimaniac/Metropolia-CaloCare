@@ -41,6 +41,7 @@ public class FoodInfo extends AppCompatActivity {
         int index = b.getInt("foodIndex", 0);
         selectedFood = FoodList.getInstance().getFood(index);
 
+        //https://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
         // Take object spinner
         spin = findViewById(R.id.numOfServ);
 

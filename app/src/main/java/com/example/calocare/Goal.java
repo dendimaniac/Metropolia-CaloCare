@@ -7,16 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import NonActivityClasses.AppControl;
 
 public class Goal extends AppCompatActivity {
-    private RadioButton rb1;
-    private RadioButton rb2;
-    private RadioButton rb3;
     private RadioGroup goal;
 
     private Button next;
@@ -29,36 +24,29 @@ public class Goal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
 
-        rb1 = findViewById(R.id.lose);
-        rb2 = findViewById(R.id.maintain);
-        rb3 = findViewById(R.id.gain);
         next = findViewById(R.id.next);
-
-        // set listener when clicking button
-        rb1.setOnCheckedChangeListener(nListener);
-        rb2.setOnCheckedChangeListener(nListener);
-        rb3.setOnCheckedChangeListener(nListener);
 
         pref = getSharedPreferences(AppControl.USER_PREF, Activity.MODE_PRIVATE);
         prefEditor = pref.edit();
         goal = findViewById(R.id.goal);
 
+        //https://stackoverflow.com/questions/39715867/android-how-to-enable-a-button-if-a-radio-button-is-checked
+        //https://developer.android.com/reference/android/widget/RadioGroup.OnCheckedChangeListener (where is -1 coming from
+        goal.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                //If something is checked, change onChecked
+                if (checkedId != -1) {
+                    next.setEnabled(true);
+                }
+            }
+        });
     }
-
-    CompoundButton.OnCheckedChangeListener nListener = new CompoundButton.OnCheckedChangeListener() {
-        //If something is checked, change onChecked
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                next.setEnabled(true);
-        }
-    };
-
 
     public void nextActivity(View v) {
         Intent nextActivity = new Intent(this, GiaoDienChinh.class);
         startActivity(nextActivity);
     }
-
 
     @Override
     protected void onResume() {
@@ -72,7 +60,6 @@ public class Goal extends AppCompatActivity {
             goal.check(checkId);
         }
     }
-
 
     @Override
     protected void onPause() {

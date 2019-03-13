@@ -20,6 +20,7 @@ public class InputFilterMinMax implements InputFilter {
         this.context = newContext;
     }
 
+    //https://stackoverflow.com/questions/14212518/is-there-a-way-to-define-a-min-and-max-value-for-edittext-in-android
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
         //Try block is used to enclose the code
@@ -28,6 +29,7 @@ public class InputFilterMinMax implements InputFilter {
             if (isInRange(min, max, input))
                 return null;
             else if (!isInRange(min, max, input)) {
+                //https://stackoverflow.com/questions/31175601/how-can-i-change-default-toast-message-color-and-background-color-in-android
                 //Create a toast message, black backround, white text, and center of screen.
                 Toast newToast = Toast.makeText(context, "Invalid, limit: " + min + " - " + max, Toast.LENGTH_SHORT);
                 View v = newToast.getView();
@@ -51,5 +53,4 @@ public class InputFilterMinMax implements InputFilter {
     private boolean isInRange(int a, int b, int c) {
         return (b > a) ? (c >= a && c <= b) : (c >= b);
     }
-
 }
